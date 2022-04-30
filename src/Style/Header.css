@@ -1,0 +1,35 @@
+.pro-sidebar-layout {
+  /*background-color: rgb(85, 38, 85);*/
+  background-color: #062726;
+  color: white;
+}
+
+/* Menu icon background color */
+
+.pro-sidebar
+  .pro-menu.shaped
+  .pro-menu-item
+  > .pro-inner-item
+  > .pro-icon-wrapper {
+  background-color: #1e3f3e);
+}
+
+.pro-sidebar .pro-menu.shaped .pro-menu-item {
+  /* color: rgb(66, 32, 66); */
+}
+
+/* Submenu background color */
+.pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
+  /* background-color: rgb(102, 57, 102); */
+  background-color: #1e3f3e;
+}
+
+.pro-sidebar {
+  display: inline;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+#header-title {
+  padding: 7.5%;
+}
