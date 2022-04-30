@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import Button from "@mui/material/Button";
+import "./Style/CommonStyles.css";
 import { Header } from "./Components/Header";
 import { Route, Routes } from "react-router-dom";
 import { PersonalProfile } from "./Interfaces/PersonalProfile";
-
-interface Product {
-  productId: string;
-  productName: string;
-  productValue: number;
-}
+import { Semester } from "./Interfaces/Semester/Semester";
+import { RegisteredExams } from "./Interfaces/Exams/RegisteredExams";
 
 function App() {
   const [role, setRole] = useState("NONE");
@@ -33,6 +29,8 @@ function App() {
         <main>
           <Routes>
             <Route path="profile/personal" element={<PersonalProfile />} />
+            <Route path="semester" element={<Semester />} />
+            <Route path="exams/studentexams" element={<RegisteredExams />} />
           </Routes>
         </main>
       )}

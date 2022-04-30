@@ -1,0 +1,22 @@
+#semester {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 80%;
+}
+
+#semester article {
+  padding: 2.5%;
+  width: 40%;
+}
+
+#semester h2 {
+  margin-bottom: 15%;
+  text-align: center;
+}
+
+#semester article form {
+  background-color: #688988;
+  padding: 2.5%;
+  height: 60%;
+}
