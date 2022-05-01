@@ -1,34 +1,43 @@
 import "../Style/LoginPage.css";
 
+interface LoginProps {
+  login: (user: {}) => void;
+}
 
-export const LoginPage = () => {
-    return (
-      <div className="mainContainer">
-        <div className="rolesDiv">
-          <div className="formIconContainers">
-            <img className="LoginPageImage" src={require('../Media/userIcon.jpeg')}/>
-            <h4>Student</h4>
-          </div>
-          <div className="formIconContainers">
-            <img className="LoginPageImage" src={require('../Media/userIcon.jpeg')}/>
-            <h4>Profesor</h4>
-          </div>
-          <div className="formIconContainers">
-            <img className="LoginPageImage" src={require('../Media/userIcon.jpeg')}/>
-            <h4>Admin</h4>
-          </div>
-        </div>
-        <br/>
-        <br/>
-        <form className="loginForm" action="" >
-          <h2 id="LoginPageh2">Kycuni ne sistem</h2>
-          <br/>
-          <input type="text" className="loginFormInputs" placeholder="ID-ja ..." required></input>
-          <input type="password" className="loginFormInputs" placeholder="Fjalkalimi ..." required></input>
-          <br/>
-          <button className="loginbutton">Kycu</button>
-        </form>
-      </div>
-    );
+export const LoginPage = ({ login }: LoginProps) => {
+  const logPersonIn = async () => {
+    let user = {
+      email: (document.getElementById("login-email") as HTMLInputElement).value,
+      password: (document.getElementById("login-password") as HTMLInputElement)
+        .value,
+    };
+    await login(user);
   };
-  
+
+  return (
+    <div className="mainContainer">
+      <form className="loginForm" onSubmit={(e) => e.preventDefault()}>
+        <h2 id="LoginPageh2">KYÇUNI NË SISTEM</h2>
+        <br />
+        <input
+          type="text"
+          id="login-email"
+          className="loginFormInputs"
+          placeholder="ID apo email adresa..."
+          required
+        ></input>
+        <input
+          type="password"
+          id="login-password"
+          className="loginFormInputs"
+          placeholder="Fjalëkalimi ..."
+          required
+        ></input>
+        <br />
+        <button className="loginbutton" onClick={logPersonIn}>
+          KYÇU
+        </button>
+      </form>
+    </div>
+  );
+};

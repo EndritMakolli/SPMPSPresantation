@@ -1,68 +1,62 @@
-.mainContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #062726;
 
-    border: 4px;
-    border-color: #688988;
-    border-radius: 50px;
-    border-style: dotted;
+  border: 1.5pt solid #688988;
+  border-radius: 50px;
 
-    height: 80%;
+  height: 80%;
 
-    margin-left: 30%;
-    margin-right: 30%;   
-    margin-top: 5%;  
-    margin-bottom: 5%;  
-    padding: 5%;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding: 5%;
 }
-#LoginPageh2{
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    font-size: 32px;
+#LoginPageh2 {
+  font-size: 32px;
+  color: #f8f7f4;
 }
-.rolesDiv{
-    display: flex;
-    flex-direction: row;
+.rolesDiv {
+  display: flex;
+  flex-direction: row;
 }
-.formIconContainers{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.formIconContainers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.LoginPageImage{
-    width: 100px;
-    height: 100px;
-    margin-right: 20px;
-    margin-left: 20px;
+.LoginPageImage {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+  margin-left: 20px;
 }
-.loginForm{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 50px;
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px;
 }
 
-.loginFormInputs{
-    width: 300px;
-    height: 40px;
-    margin-top: 35px;
-    text-align: center;
-    border-radius: 10px;
-    border: none;
-    border: solid 2px #688988;
-    color: black;
+.loginFormInputs {
+  width: 300px;
+  height: 40px;
+  margin-top: 35px;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+  border: solid 2px #688988;
+  color: black;
 }
 
-.loginbutton{
-    border-radius: 5px;
-    margin-top: 35px;
-    width: 300px;
-    height: 45px;
-    background-color: #688988;
-    color: white;
-    font-family: sans-serif;
-    text-align: center;
-    border: none;
+.loginbutton {
+  width: 30%;
+  padding: 2.5%;
+  border: none;
+  border-radius: 10px;
+  background-color: #f8f7f4;
+  font-weight: 600;
 }
-

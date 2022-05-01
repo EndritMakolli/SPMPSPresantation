@@ -1,7 +1,11 @@
 import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlined";
 import "../Style/Settings.css";
 
-export const Settings = () => {
+interface SettingsProps {
+  logOut: () => void;
+}
+
+export const Settings = ({ logOut }: SettingsProps) => {
   return (
     <>
       <h1>Settings</h1>
@@ -12,7 +16,7 @@ export const Settings = () => {
         </div>
         <div className="form-item">
           <AccountBalanceOutlinedIcon fontSize="large" />
-          <button>Çkyçu nga sistemi</button>
+          <button onClick={logOut}>Çkyçu nga sistemi</button>
         </div>
       </section>
     </>

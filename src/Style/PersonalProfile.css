@@ -1,64 +1,64 @@
-.outerDiv{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
+.outerDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
 }
-.theMainContainer{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #f8f7f4;
-    
+.theMainContainer {
+  background-color: #f8f7f4;
+  margin-top: 3%;
+  padding: 2.5%;
+  height: 80vh;
+  border-radius: 30px;
+  width: 100%;
+}
 
-    border-radius: 30px;
-
-    padding-left: 11%;
-    padding-top: 10%;
-    padding-bottom: 10%;
-    margin-top: 3%;
-    width: 100%;
+.personalProfileContents {
+  margin-top: 7.5%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
-.leftContainer{
-    display: flex;
-    flex-direction: column;
-
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
 }
-.rightContainer{
-    display: flex;
-    flex-direction: column;
-
+.rightContainer {
+  display: flex;
+  width: 40%;
+  flex-direction: column;
 }
-.profileInputs{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 300px;
-    height: 40px;
-    text-align: center;
-    border-radius: 10px;
-    border: none;
-    border: solid 2px #688988;
-    color: black;
+.profileInputs {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+  border: solid 2px #688988;
+  color: black;
 }
-.specialInputs{
-    margin-bottom: 10px;
-    width: 140px;
-    margin-top: 10px;
-    height: 40px;
-    text-align: center;
-    border-radius: 10px;
-    border: none;
-    border: solid 2px #688988;
-    color: black;
+.specialInputs {
+  margin-bottom: 10px;
+  width: 45%;
+  margin-top: 10px;
+  height: 40px;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+  border: solid 2px #688988;
+  color: black;
 }
-#specialinput2{
-    margin-left: 20px;
+#specialinput2 {
+  margin-left: 20px;
 }
-#ProfileImage{
-    width: 250px;
-    height: 350px;
-    margin-left: 100px;
-    margin-right: 100px;
-    border: 2px solid #688988;
-    border-style: dotted;
+#ProfileImage {
+  width: 250px;
+  height: 350px;
+  margin-left: 100px;
+  margin-right: 100px;
+  border: 2px solid #688988;
 }

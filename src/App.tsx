@@ -15,28 +15,51 @@ import { StudentProfile } from "./Interfaces/StudentProfile";
 import { Transkripta } from "./Interfaces/Exams/Transkripta";
 import { Njoftimet } from "./Interfaces/Njoftimet";
 
-interface Product {
-  productId: string;
-  productName: string;
-  productValue: number;
-}
-
 function App() {
   const [role, setRole] = useState("NONE");
   const [logged, setLogged] = useState(false);
   const [faculty, setFaculty] = useState(false);
+
+  console.log(role);
+
+  const login = async (user: {}) => {
+    //@ts-ignore
+    alert(user.email);
+    await fetch("http://localhost:5000/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(user),
+    }).then((res) => {
+      if (res.status === 200) {
+        alert("done");
+        setRole("STUDENT");
+        setLogged(true);
+      } else alert(res.status);
+    });
+  };
+
+  const logOut = async () => {
+    await fetch("http://localhost:5000/api/auth/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }).then((res) => {
+      if (res.status === 200) {
+        setRole("NONE");
+        setLogged(false);
+        setFaculty(false);
+      } else alert("jo bre");
+    });
+  };
+
   return (
     <div className="App">
-      {role === "NONE" && (
-        <button
-          onClick={() => {
-            setLogged(true);
-            setRole("STUDENT");
-          }}
-        >
-          LOGIN
-        </button>
-      )}
+      {!logged && <LoginPage login={login} />}
       {logged && !faculty && <ChooseFaculty setFaculty={setFaculty} />}
       {logged && faculty && <Header role={role} />}
       {logged && faculty && (
@@ -47,8 +70,7 @@ function App() {
             <Route path="exams/studentexams" element={<RegisteredExams />} />
             <Route path="exams/registerexams" element={<RegisterExams />} />
             <Route path="exams/history" element={<ExamHistory />} />
-            <Route path="settings" element={<Settings />} />
-            <Route path="login" element={<LoginPage />} />
+            <Route path="settings" element={<Settings logOut={logOut} />} />
             <Route path="profile/student" element={<StudentProfile />} />
             <Route path="profile/transcript" element={<Transkripta />} />
             <Route path="posts" element={<Njoftimet />} />
