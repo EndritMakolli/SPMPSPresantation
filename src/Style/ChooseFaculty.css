@@ -1,0 +1,52 @@
+#chooseFaculty {
+  position: relative;
+  width: 60%;
+  height: 80%;
+  top: 10%;
+  left: 20%;
+  background-color: #062726;
+  border-radius: 25px;
+  padding: 2.5%;
+}
+
+#chooseFaculty h1 {
+  color: white;
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+#chooseFaculty div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#chooseFaculty article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#chooseFaculty article svg {
+  box-sizing: content-box;
+  margin: 20%;
+  transform: scale(2.5);
+  transition: all 0.1s ease-in-out;
+}
+
+#chooseFaculty article svg:hover {
+  transform: scale(3);
+}
+
+#chooseFaculty a {
+  color: white;
+  text-decoration: none;
+}
+
+#chooseFaculty article p:nth-child(3) {
+  color: gray;
+  margin: 2.5%;
+}

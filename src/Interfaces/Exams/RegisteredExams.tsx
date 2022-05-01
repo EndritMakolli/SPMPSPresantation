@@ -2,7 +2,7 @@ export const RegisteredExams = () => {
   return (
     <>
       <h1>Provimet e paraqitura</h1>
-      <section className="contents" id="registerExams">
+      <section className="contents" id="registeredExams">
         <table>
           <thead>
             <th>Lënda</th>

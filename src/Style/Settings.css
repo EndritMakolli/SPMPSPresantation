@@ -1,0 +1,19 @@
+#settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#settings button {
+  margin: 1%;
+  border: none;
+  background-color: #062726;
+  color: white;
+  padding: 1.5%;
+  border-radius: 10px;
+  transition: all 0.1s ease-in-out;
+}
+
+#settings button:hover {
+  background-color: #3a4b4a;
+}

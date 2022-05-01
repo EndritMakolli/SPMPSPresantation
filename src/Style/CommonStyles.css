@@ -19,16 +19,26 @@ table {
   border-collapse: collapse;
   border-spacing: 1em;
   font-weight: bold;
+  table-layout: auto;
 }
 
 table button {
   margin: 1%;
+  border: none;
   background-color: #062726;
   color: white;
-  padding: 2.5%;
-  border: none;
+  padding: 3%;
   border-radius: 10px;
   transition: all 0.1s ease-in-out;
+}
+
+table tbody tr:nth-child(2n) button {
+  background-color: #f8f7f4;
+  color: #062726;
+}
+
+table tbody tr:nth-child(2n) button:hover {
+  background-color: #fffaeb;
 }
 
 table button:hover {
@@ -47,7 +57,7 @@ table tbody tr {
 }
 
 table tbody tr:nth-child(2n) {
-  background-color: #3a4b4a;
+  background-color: #062726;
   color: white;
 }
 
@@ -60,6 +70,20 @@ table thead th {
   padding: 1.25%;
   font-size: 1.5em;
   font-weight: bolder;
+}
+
+table tbody select {
+  border: 1.5pt solid #062726;
+  width: 100%;
+  padding: 1.25%;
+  background-color: #f8f7f4;
+  border-radius: 5px;
+  font-size: 1em;
+  color: rgb(75, 75, 75);
+}
+
+table tbody tr:nth-child(2n) select {
+  border: 1.5pt solid #f8f7f4;
 }
 
 #semester label {
