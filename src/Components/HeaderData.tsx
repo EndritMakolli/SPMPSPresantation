@@ -49,6 +49,12 @@ export const data: HeaderItem[] = [
       },
       {
         roles: ["ACADEMIC"],
+        title: "Login Page",
+        linkTo: "login",
+        icon: <PersonIcon />,
+      },
+      {
+        roles: ["ACADEMIC"],
         title: "Profili akademik",
         linkTo: "profile/academic",
         icon: <SchoolOutlinedIcon />,
