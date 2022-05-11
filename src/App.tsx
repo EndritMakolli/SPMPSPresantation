@@ -24,7 +24,7 @@ function App() {
 
   const login = async (user: {}) => {
     //@ts-ignore
-    alert(user.email);
+    //alert(user.email);
     await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
       headers: {
