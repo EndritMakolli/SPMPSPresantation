@@ -1,0 +1,43 @@
+article.post {
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-radius: 25px;
+  padding: 2.5%;
+  margin-top: 5%;
+  width: 90%;
+  position: relative;
+  left: 5%;
+}
+
+article.post div.postHeader {
+  padding: 2.5%;
+}
+
+article.post h2 {
+  font-size: 2em;
+  border-bottom: 2px solid black;
+}
+
+article.post h3 {
+  color: gray;
+  margin: 1%;
+}
+
+article.post p.postGroup {
+  display: inline-block;
+  padding: 1.25%;
+  border: 2px solid #295755;
+  background-color: #1e3f3e;
+  color: white;
+  font-weight: bolder;
+}
+
+article.post div.postBody {
+  background-color: #1e3f3e;
+  width: 95%;
+  padding: 2.5%;
+  margin-left: 2.5%;
+  color: white;
+  font-size: large;
+  line-height: 40px;
+  text-align: justify;
+}

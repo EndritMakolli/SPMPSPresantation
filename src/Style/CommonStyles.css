@@ -1,7 +1,7 @@
 .dotted-line {
   display: inline-block;
   height: 100%;
-  border-left: 1.5pt dotted black;
+  border-left: 1px solid #062726;
 }
 
 .not-active {
@@ -14,138 +14,36 @@
   border-top: 1.5pt solid white;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 1em;
-  font-weight: bold;
-  table-layout: auto;
-}
-
-table button {
-  margin: 1%;
-  border: none;
-  background-color: #062726;
-  color: white;
-  padding: 3%;
-  border-radius: 10px;
-  transition: all 0.1s ease-in-out;
-}
-
-table tbody tr:nth-child(2n) button {
-  background-color: #f8f7f4;
-  color: #062726;
-}
-
-table tbody tr:nth-child(2n) button:hover {
-  background-color: #fffaeb;
-}
-
-table button:hover {
-  background-color: #3a4b4a;
-}
-
-table thead {
-  border-bottom: 1pt solid black;
-  margin-bottom: 1%;
-}
-
-table tbody tr {
-  color: black;
-  background-color: #f8f7f4;
-  color: black;
-}
-
-table tbody tr:nth-child(2n) {
-  background-color: #062726;
-  color: white;
-}
-
-table tbody tr td {
-  padding: 1%;
-}
-
-table thead th {
-  text-align: left;
-  padding: 1.25%;
-  font-size: 1.5em;
-  font-weight: bolder;
-}
-
-table tbody select {
-  border: 1.5pt solid #062726;
-  width: 100%;
-  padding: 1.25%;
-  background-color: #f8f7f4;
-  border-radius: 5px;
-  font-size: 1em;
-  color: rgb(75, 75, 75);
-}
-
-table tbody tr:nth-child(2n) select {
-  border: 1.5pt solid #f8f7f4;
-}
-
-#semester label {
+label {
   display: block;
-  padding: 15px;
+  padding: 2.5px;
+  color: #688988;
   font-weight: bold;
+  margin: 2.5px;
 }
 
-#semester button {
-  background-color: #062726;
-  color: white;
-  padding: 2.5%;
-  border: none;
-  border-radius: 3px;
-  transition: all 0.1s ease-in-out;
-}
-
-#semester button:hover {
-  background-color: #3a4b4a;
-}
-
-#semester button:active {
-  background-color: #062726;
-}
-
-#semester select {
-  border: none;
+form label {
   width: 60%;
-  padding: 1.25%;
-  background-color: rgb(252, 250, 246);
-  border-radius: 5px;
-  font-size: 1em;
-  color: rgb(75, 75, 75);
-}
-
-#semester form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 60%;
   color: #f8f7f4;
 }
 
-#semester span {
+.message {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 5%;
+  margin-top: 2.5%;
+  font-size: 1em;
+  background-color: #405453;
+  color: white;
   text-align: center;
 }
 
-.message {
-  width: 100%;
-  padding: 2.5%;
-  margin-top: 2.5%;
-  background-color: #688988;
-  color: white;
-}
-
-.form-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
+.message span {
+  text-align: left;
+  margin-left: 3%;
 }
 
 ::-webkit-scrollbar {
@@ -164,4 +62,17 @@ table tbody tr:nth-child(2n) select {
 ::-webkit-scrollbar-thumb:hover {
   background: #688988;
   border-radius: 10px;
+}
+
+span.dataField {
+  background-color: #f8fffe;
+  border: 2px solid #688988;
+  padding: 7.5px;
+  min-width: 100%;
+  display: block;
+  margin-bottom: 2.5%;
+  color: #062726;
+  font-weight: 700;
+  border-radius: 10px;
+  user-select: none;
 }

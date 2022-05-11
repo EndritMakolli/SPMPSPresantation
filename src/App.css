@@ -17,6 +17,11 @@ html {
   display: flex;
 }
 
+.App > h2 {
+  padding: 1%;
+  border-bottom: 2pt solid white;
+}
+
 main {
   margin-left: 17.5%;
   padding: 2.5%;
@@ -30,6 +35,11 @@ main h1 {
   padding-bottom: 1.25%;
   width: 100%;
   border-bottom: 2pt solid black;
+}
+
+main section {
+  border: 1px solid rgba(0, 0, 0, 0.132);
+  margin-bottom: 5%;
 }
 
 .contents {

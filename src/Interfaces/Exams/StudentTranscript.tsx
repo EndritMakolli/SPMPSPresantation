@@ -1,8 +1,8 @@
-export const Transkripta = () => {
+export const StudentTranscript = () => {
   return (
     <>
       <h1>Transkripta e notave</h1>
-      <section className="contents" id="registerExams">
+      <section className="contents" id="studentTranscript">
         <table>
           <thead>
             <th>Nr.</th>

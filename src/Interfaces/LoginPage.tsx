@@ -1,43 +1,54 @@
+import { ChangeEvent, useState } from "react";
 import "../Style/LoginPage.css";
 
 interface LoginProps {
   login: (user: {}) => void;
 }
 
+interface Credentials {
+  email: string;
+  password: string;
+}
+
 export const LoginPage = ({ login }: LoginProps) => {
-  const logPersonIn = async () => {
-    let user = {
-      email: (document.getElementById("login-email") as HTMLInputElement).value,
-      password: (document.getElementById("login-password") as HTMLInputElement)
-        .value,
-    };
-    await login(user);
+  const [credentials, setCredentials] = useState<Credentials>(
+    {} as Credentials
+  );
+
+  const handleCredentialsInputChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    setCredentials({
+      ...credentials,
+      [event.currentTarget.name]: event.currentTarget.value,
+    });
+  };
+
+  const LogIn = async () => {
+    console.log(credentials);
+    await login(credentials);
   };
 
   return (
-    <div className="mainContainer">
-      <form className="loginForm" onSubmit={(e) => e.preventDefault()}>
-        <h2 id="LoginPageh2">KYÇUNI NË SISTEM</h2>
-        <br />
-        <input
-          type="text"
-          id="login-email"
-          className="loginFormInputs"
-          placeholder="ID apo email adresa..."
-          required
-        ></input>
-        <input
-          type="password"
-          id="login-password"
-          className="loginFormInputs"
-          placeholder="Fjalëkalimi ..."
-          required
-        ></input>
-        <br />
-        <button className="loginbutton" onClick={logPersonIn}>
-          KYÇU
-        </button>
-      </form>
-    </div>
+    <form id="loginForm" onSubmit={(e) => e.preventDefault()}>
+      <h2 id="LoginPageh2">KYÇUNI NË SISTEM</h2>
+      <input
+        type="text"
+        name="email"
+        placeholder="ID apo email adresa..."
+        onChange={handleCredentialsInputChange}
+        required
+      ></input>
+      <input
+        type="password"
+        name="password"
+        placeholder="Fjalëkalimi ..."
+        onChange={handleCredentialsInputChange}
+        required
+      ></input>
+      <button className="loginbutton" onClick={LogIn}>
+        KYÇU
+      </button>
+    </form>
   );
 };

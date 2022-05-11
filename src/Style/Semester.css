@@ -11,12 +11,10 @@
 }
 
 #semester h2 {
-  margin-bottom: 15%;
+  margin-bottom: 10%;
   text-align: center;
 }
 
 #semester article form {
-  background-color: #688988;
-  padding: 2.5%;
   height: 60%;
 }

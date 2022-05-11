@@ -1,9 +1,0 @@
-button.form-button {
-  background-color: black;
-  color: white;
-}
-
-button.form-button.disabled {
-  background-color: gray;
-  color: white;
-}

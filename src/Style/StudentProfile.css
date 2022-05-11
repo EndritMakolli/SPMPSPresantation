@@ -1,61 +1,11 @@
-.studentOuterDiv{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
+#studentProfile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
-.studentMainContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f8f7f4;
 
-    border-radius: 30px;
-
-    padding: 3%;
-    padding-left: 40%;
-    padding-right: 40%;
-    margin-top: 3%;
-    width: 100%;
-}
-.studentInputsContainer{
-    display: flex;
-    flex-direction: column;
-    max-width: 250px;
-}
-.studentProfileInputs {
-    margin-top: 15px;
-    margin-bottom: 10px;
-    width: 300px;
-    height: 40px;
-    text-align: center;
-    border-radius: 10px;
-    border: solid 2px #688988;
-    color: black;
-}
-.studentSpecialInputsContainer{
-    display: flex;
-    flex-direction: row;
-}
-.studentSpecialInputs{
-    margin-bottom: 10px;
-    width: 140px;
-    margin-top: 10px;
-    height: 40px;
-    text-align: center;
-    border-radius: 10px;
-    border: none;
-    border: solid 2px #688988;
-    color: black;
-}
-#studentSpecialInput2{
-    margin-left: 20px;
-}
-#studentProfileImage{
-    width: 200px;
-    height: 200px;
-    margin-left: 45px;
-    margin-bottom: 10%;
-    border: 2px solid #688988;
-    border-style: dotted;
+#studentProfile img {
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 15px;
 }

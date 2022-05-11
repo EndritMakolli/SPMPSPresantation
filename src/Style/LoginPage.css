@@ -1,62 +1,7 @@
-.mainContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #062726;
-
-  border: 1.5pt solid #688988;
-  border-radius: 50px;
-
-  height: 80%;
-
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  padding: 5%;
-}
-#LoginPageh2 {
-  font-size: 32px;
-  color: #f8f7f4;
-}
-.rolesDiv {
-  display: flex;
-  flex-direction: row;
-}
-.formIconContainers {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.LoginPageImage {
-  width: 100px;
-  height: 100px;
-  margin-right: 20px;
-  margin-left: 20px;
-}
-.loginForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 50px;
-}
-
-.loginFormInputs {
-  width: 300px;
-  height: 40px;
-  margin-top: 35px;
-  text-align: center;
-  border-radius: 10px;
-  border: none;
-  border: solid 2px #688988;
-  color: black;
-}
-
-.loginbutton {
-  width: 30%;
-  padding: 2.5%;
-  border: none;
-  border-radius: 10px;
-  background-color: #f8f7f4;
-  font-weight: 600;
+form#loginForm {
+  width: 50%;
+  height: 75%;
+  border-radius: 25px;
+  margin: 0 auto;
+  margin-top: 6.25%;
 }

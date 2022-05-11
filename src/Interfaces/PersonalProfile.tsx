@@ -1,100 +1,39 @@
 import "../Style/PersonalProfile.css";
+import { DataField } from "../Components/Common/DataField";
 
 export const PersonalProfile = () => {
   return (
-    <div className="outerDiv">
+    <>
       <h1 id="title">Profili personal</h1>
-      <div className="theMainContainer">
-        <div className="personalProfileContents">
-          <div className="leftContainer">
-            <input
-              type="text"
-              className="profileInputs"
-              placeholder="Emri dhe Mbiemri"
-              readOnly
-            ></input>
-            <input
-              type="text"
-              className="profileInputs"
-              placeholder="Emri i Prindit"
-              readOnly
-            ></input>
-            <div>
-              <input
-                type="text"
-                className="specialInputs"
-                placeholder="Ditlindja"
-                readOnly
-              ></input>
-              <input
-                type="text"
-                id="specialinput2"
-                className="specialInputs"
-                placeholder="Mosha"
-                readOnly
-              ></input>
-            </div>
-            <input
-              type="text"
-              className="profileInputs"
-              placeholder="Numri i Leternjoftimit"
-              readOnly
-            ></input>
-            <input
-              type="text"
-              className="profileInputs"
-              placeholder="Email Adresa"
-              readOnly
-            ></input>
-            <input
-              type="text"
-              className="profileInputs"
-              placeholder="Gjinia"
-              readOnly
-            ></input>
-          </div>
-
-          <div className="ProfileImageContainer">
-            <img
-              id="ProfileImage"
-              src="https://engineering.unl.edu/images/staff/Kayla-Person.jpg"
-            />
-          </div>
-
-          <div className="rightContainer">
-            <input
-              type="text"
-              className="profileInputs"
-              placeholder="Numri i Telefonit"
-              readOnly
-            ></input>
-            <input
-              type="text"
-              className="profileInputs"
-              placeholder="Shteti"
-              readOnly
-            ></input>
-            <input
-              type="text"
-              className="profileInputs"
-              placeholder="Qyteti"
-              readOnly
-            ></input>
-            <input
-              type="text"
-              className="profileInputs"
-              placeholder="Adresa"
-              readOnly
-            ></input>
-            <input
-              type="text"
-              className="profileInputs"
-              placeholder="ZIP Kodi"
-              readOnly
-            ></input>
-          </div>
+      <section className="contents" id="personalProfile">
+        <div className="personalProfileBlock">
+          <DataField label="Emri dhe mbiemri" contents="Rilind Bicaj" />
+          <DataField label="Emri i prindit" contents="Sadik Bicaj" />
+          <DataField label="Ditëlindja" contents="22 Dhjetor, 2000" />
+          <DataField label="Mosha" contents="21 vjeç" />
+          <DataField label="Numri i letërnjoftimit" contents="123141512" />
+          <DataField label="Email adresa" contents="rilindbicaj@gmail.com" />
+          <DataField label="Gjinia" contents="Mashkull" />
         </div>
-      </div>
-    </div>
+
+        <div className="personalProfileBlock">
+          <img
+            src="https://engineering.unl.edu/images/staff/Kayla-Person.jpg"
+            alt="Fotoja e juaj"
+          />
+        </div>
+
+        <div className="personalProfileBlock">
+          <DataField label="Numri i telefonit" contents="+383 45 994 307" />
+          <DataField label="Shteti" contents="Kosovë" />
+          <DataField label="Qyteti" contents="Istog" />
+          <DataField
+            label="Adresa"
+            contents="Vrellë e Istogut, Rruga Tedeli, nr. 15"
+          />
+          <DataField label="ZIP Kodi" contents="30000" />
+        </div>
+      </section>
+    </>
   );
 };

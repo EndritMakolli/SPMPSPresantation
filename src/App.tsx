@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import "./Style/CommonStyles.css";
+import "./Style/Forms.css";
+import "./Style/Tables.css";
 import { Header } from "./Components/Header";
 import { Route, Routes } from "react-router-dom";
 import { PersonalProfile } from "./Interfaces/PersonalProfile";
@@ -12,8 +14,8 @@ import { ExamHistory } from "./Interfaces/Exams/ExamHistory";
 import { Settings } from "./Interfaces/Settings";
 import { LoginPage } from "./Interfaces/LoginPage";
 import { StudentProfile } from "./Interfaces/StudentProfile";
-import { Transkripta } from "./Interfaces/Exams/Transkripta";
-import { Njoftimet } from "./Interfaces/Njoftimet";
+import { StudentTranscript } from "./Interfaces/Exams/StudentTranscript";
+import { Posts } from "./Interfaces/Posts";
 
 function App() {
   const [role, setRole] = useState("NONE");
@@ -72,8 +74,8 @@ function App() {
             <Route path="exams/history" element={<ExamHistory />} />
             <Route path="settings" element={<Settings logOut={logOut} />} />
             <Route path="profile/student" element={<StudentProfile />} />
-            <Route path="profile/transcript" element={<Transkripta />} />
-            <Route path="posts" element={<Njoftimet />} />
+            <Route path="profile/transcript" element={<StudentTranscript />} />
+            <Route path="posts" element={<Posts />} />
           </Routes>
         </main>
       )}

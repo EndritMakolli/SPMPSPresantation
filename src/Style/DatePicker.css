@@ -1,0 +1,12 @@
+div.datePicker {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.datePicker input {
+  padding: 5px;
+  font-size: larger;
+  width: 20%;
+}
