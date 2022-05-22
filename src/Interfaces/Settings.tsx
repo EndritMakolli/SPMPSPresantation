@@ -1,11 +1,9 @@
 import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlined";
+import { useStore } from "../Stores/Store";
 import "../Style/Settings.css";
 
-interface SettingsProps {
-  logOut: () => void;
-}
-
-export const Settings = ({ logOut }: SettingsProps) => {
+export const Settings = () => {
+  const { logOut } = useStore().userStore;
   return (
     <>
       <h1>Settings</h1>

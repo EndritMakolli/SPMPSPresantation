@@ -30,6 +30,8 @@ select {
 form {
   padding: 2.5%;
   display: flex;
+  min-height: 60%;
+  min-width: 100%;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;

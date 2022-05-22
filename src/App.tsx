@@ -16,55 +16,21 @@ import { LoginPage } from "./Interfaces/LoginPage";
 import { StudentProfile } from "./Interfaces/StudentProfile";
 import { StudentTranscript } from "./Interfaces/Exams/StudentTranscript";
 import { Posts } from "./Interfaces/Posts";
+import { observer } from "mobx-react";
+import { useStore } from "./Stores/Store";
+import { ManageSystem } from "./Interfaces/ManageSystem";
+import { BusSchedule } from "./Interfaces/BusSchedule";
 
-function App() {
-  const [role, setRole] = useState("NONE");
-  const [logged, setLogged] = useState(false);
+export default observer(function App() {
   const [faculty, setFaculty] = useState(false);
-
-  console.log(role);
-
-  const login = async (user: {}) => {
-    //@ts-ignore
-    //alert(user.email);
-    await fetch("http://localhost:5000/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(user),
-    }).then((res) => {
-      if (res.status === 200) {
-        alert("done");
-        setRole("STUDENT");
-        setLogged(true);
-      } else alert(res.status);
-    });
-  };
-
-  const logOut = async () => {
-    await fetch("http://localhost:5000/api/auth/logout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }).then((res) => {
-      if (res.status === 200) {
-        setRole("NONE");
-        setLogged(false);
-        setFaculty(false);
-      } else alert("jo bre");
-    });
-  };
+  const { loggedIn, role } = useStore().userStore;
 
   return (
     <div className="App">
-      {!logged && <LoginPage login={login} />}
-      {logged && !faculty && <ChooseFaculty setFaculty={setFaculty} />}
-      {logged && faculty && <Header role={role} />}
-      {logged && faculty && (
+      {!loggedIn && <LoginPage />}
+      {loggedIn && !faculty && <ChooseFaculty setFaculty={setFaculty} />}
+      {loggedIn && faculty && <Header role={role!} />}
+      {loggedIn && faculty && (
         <main>
           <Routes>
             <Route path="profile/personal" element={<PersonalProfile />} />
@@ -72,15 +38,15 @@ function App() {
             <Route path="exams/studentexams" element={<RegisteredExams />} />
             <Route path="exams/registerexams" element={<RegisterExams />} />
             <Route path="exams/history" element={<ExamHistory />} />
-            <Route path="settings" element={<Settings logOut={logOut} />} />
+            <Route path="settings" element={<Settings />} />
             <Route path="profile/student" element={<StudentProfile />} />
             <Route path="profile/transcript" element={<StudentTranscript />} />
+            <Route path="admin" element={<ManageSystem />} />
             <Route path="posts" element={<Posts />} />
+            <Route path="profile/buses" element={<BusSchedule />} />
           </Routes>
         </main>
       )}
     </div>
   );
-}
-
-export default App;
+});
