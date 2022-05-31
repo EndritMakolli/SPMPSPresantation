@@ -7,6 +7,7 @@ export type BusSchedule = {
 };
 
 export type BusScheduleSlot = {
+  slotId: number;
   departTime: string;
   arrivalTime: string;
 };

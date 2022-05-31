@@ -150,3 +150,15 @@ a {
   height: 70vh;
   margin-top: 15vh;
 }
+
+.text-center {
+  text-align: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}

@@ -13,30 +13,27 @@ export const PersonalProfile = () => {
             label="Emri dhe mbiemri"
             contents={user?.firstName + " - " + user?.lastName}
           />
-          <DataField label="Emri i prindit" contents="Sadik Bicaj" />
-          <DataField label="Ditëlindja" contents="22 Dhjetor, 2000" />
-          <DataField label="Mosha" contents="21 vjeç" />
-          <DataField label="Numri i letërnjoftimit" contents="123141512" />
-          <DataField label="Email adresa" contents="rilindbicaj@gmail.com" />
-          <DataField label="Gjinia" contents="Mashkull" />
-        </div>
-
-        <div className="personalProfileBlock">
-          <img
-            src="https://res.cloudinary.com/spms/image/upload/v1653323826/profile_pictures/testtina2.jpg"
-            alt="Fotoja e juaj"
-          />
-        </div>
-
-        <div className="personalProfileBlock">
-          <DataField label="Numri i telefonit" contents="+383 45 994 307" />
-          <DataField label="Shteti" contents="Kosovë" />
-          <DataField label="Qyteti" contents="Istog" />
+          <DataField label="Emri i prindit" contents={user!.parentName} />
+          <DataField label="Ditëlindja" contents={user!.birthday} />
+          <DataField label="Mosha" contents={user!.age} />
           <DataField
-            label="Adresa"
-            contents="Vrellë e Istogut, Rruga Tedeli, nr. 15"
+            label="Numri i letërnjoftimit"
+            contents={user!.personalNumber}
           />
-          <DataField label="ZIP Kodi" contents="30000" />
+          <DataField label="Email adresa" contents={user!.email} />
+          <DataField label="Gjinia" contents={user!.gender} />
+        </div>
+
+        <div className="personalProfileBlock">
+          <img src={user!.profilePictureUrl} alt="Fotoja e juaj" />
+        </div>
+
+        <div className="personalProfileBlock">
+          <DataField label="Numri i telefonit" contents={user!.telephone} />
+          <DataField label="Shteti" contents={user!.country} />
+          <DataField label="Qyteti" contents={user!.city} />
+          <DataField label="Adresa" contents={user!.address} />
+          <DataField label="ZIP Kodi" contents={user!.zipCode} />
         </div>
       </section>
     </>

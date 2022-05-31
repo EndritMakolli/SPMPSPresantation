@@ -2,10 +2,33 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { observer } from "mobx-react";
 import { Loader } from "../Components/Loader";
 import { useStore } from "../Stores/Store";
+import EditIcon from "@mui/icons-material/Edit";
+import CloseIcon from "@mui/icons-material/Close";
+import SaveIcon from "@mui/icons-material/Save";
+import React from "react";
+import AddIcon from "@mui/icons-material/Add";
 
 export default observer(function BusSchedule() {
-  const { schedules, currentSchedule, selectSchedule } =
-    useStore().busScheduleStore;
+  const {
+    schedules,
+    currentSchedule,
+    selectSchedule,
+    setEditMode,
+    handleCloseButton,
+    mode,
+    saveChangesToSlot,
+    updateSlot,
+    currentSlot,
+    setCreateMode,
+  } = useStore().busScheduleStore;
+  const { role } = useStore().userStore;
+
+  const handleSlotInputChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
+    updateSlot({
+      ...currentSlot!,
+      [e.currentTarget.name]: e.currentTarget.value,
+    });
+  };
 
   return (
     <>
@@ -46,13 +69,95 @@ export default observer(function BusSchedule() {
                 {currentSchedule?.slots.map((slot) => {
                   return (
                     <tr className="font-large">
-                      <td>{slot.departTime}</td>
-                      <td>{slot.arrivalTime}</td>
+                      {mode === "EDIT" && currentSlot?.slotId === slot.slotId && (
+                        <>
+                          <td>
+                            <input
+                              type="time"
+                              name="departTime"
+                              defaultValue={slot.departTime}
+                              onChange={handleSlotInputChange}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="time"
+                              name="arrivalTime"
+                              onChange={handleSlotInputChange}
+                              defaultValue={slot.arrivalTime}
+                            />
+                          </td>
+                        </>
+                      )}
+                      {currentSlot?.slotId !== slot.slotId && (
+                        <>
+                          <td>{slot.departTime}</td>
+                          <td>{slot.arrivalTime}</td>
+                        </>
+                      )}
+                      {role === "ADMIN" && (
+                        <td>
+                          {mode === "READ" && (
+                            <span onClick={() => setEditMode(slot.slotId)}>
+                              <EditIcon fontSize="large" />
+                            </span>
+                          )}
+                          {(!currentSlot ||
+                            currentSlot?.slotId === slot.slotId) && (
+                            <span
+                              onClick={() => handleCloseButton(slot.slotId)}
+                            >
+                              <CloseIcon fontSize="large" />
+                            </span>
+                          )}
+                          {mode === "EDIT" &&
+                            currentSlot?.slotId === slot.slotId && (
+                              <span onClick={saveChangesToSlot}>
+                                <SaveIcon fontSize="large" />
+                              </span>
+                            )}
+                        </td>
+                      )}
                     </tr>
                   );
                 })}
+                {mode === "CREATE" && role === "ADMIN" && (
+                  <tr>
+                    <td>
+                      <input
+                        type="time"
+                        name="departTime"
+                        onChange={handleSlotInputChange}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="time"
+                        name="arrivalTime"
+                        onChange={handleSlotInputChange}
+                      />
+                    </td>
+                    <td>
+                      <span onClick={() => handleCloseButton()}>
+                        <CloseIcon fontSize="large" />
+                      </span>
+                      {
+                        <span onClick={saveChangesToSlot}>
+                          <SaveIcon fontSize="large" />
+                        </span>
+                      }
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
+            {mode === "READ" && role === "ADMIN" && (
+              <p className="row justify-center align-center">
+                <span onClick={setCreateMode} className="text-center">
+                  <AddIcon fontSize="large" />
+                </span>
+              </p>
+            )}
           </>
         )}
       </section>
