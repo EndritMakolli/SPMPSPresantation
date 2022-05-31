@@ -107,15 +107,19 @@ a {
 }
 
 .col4 {
-  width: 41.66%;
+  width: 50%;
 }
 
 .off4 {
-  margin-left: 33.33%;
+  margin-left: 25%;
 }
 
 .border-radius-light {
   border-radius: 10px;
+}
+
+.text-white {
+  color: white;
 }
 
 .font-medium {
@@ -136,4 +140,13 @@ a {
 
 .pad-sm {
   padding: 1%;
+}
+
+.pad-lg {
+  padding: 2.5%;
+}
+
+.loginform {
+  height: 70vh;
+  margin-top: 15vh;
 }

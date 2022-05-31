@@ -1,12 +1,13 @@
 #chooseFaculty {
   position: relative;
   width: 60%;
-  height: 80%;
   top: 10%;
   left: 20%;
+  height: 80%;
   background-color: #062726;
   border-radius: 25px;
   padding: 2.5%;
+  margin-bottom: 25%;
 }
 
 #chooseFaculty h1 {
@@ -28,12 +29,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 33%;
+  height: 30%;
 }
 
-#chooseFaculty article svg {
-  box-sizing: content-box;
-  margin: 20%;
-  transform: scale(2.5);
+#chooseFaculty article img {
+  width: 50%;
+  filter: invert();
   transition: all 0.1s ease-in-out;
 }
 
@@ -41,7 +43,16 @@
   transform: scale(3);
 }
 
+#chooseFaculty p {
+  text-align: center;
+}
+
 #chooseFaculty a {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
   text-decoration: none;
 }

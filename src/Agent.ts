@@ -1,9 +1,12 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { Faculty } from "./Types/Faculty";
+import { User } from "./Types/User";
 
 axios.defaults.withCredentials = true;
 
 const urls = {
   auth: "http://localhost:5000/",
+  fcm: "http://localhost:7000/",
 };
 
 const responseBody = <T>(response: AxiosResponse<T>) => response;
@@ -20,10 +23,22 @@ const Authentication = {
   GenerateToken: async (credentials: {}) =>
     requests.post(urls.auth + "api/auth/login", credentials),
   LogOut: () => requests.post(urls.auth + "api/auth/logout", {}),
+  CookieLogin: async () =>
+    requests.get<User>(urls.auth + "api/auth/demoGetUser"),
+};
+
+const Faculties = {
+  GetFacultyById: async (id: number) =>
+    requests.get<Faculty>(urls.fcm + "api/faculties/" + id),
+  GetFacultiesForUser: async (userId: string) =>
+    requests.get<Faculty[]>(
+      urls.fcm + "api/faculties/GetFacultiesForUser/" + userId
+    ),
 };
 
 const agent = {
   Authentication: Authentication,
+  Faculties: Faculties,
 };
 
 export default agent;

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import "./Style/CommonStyles.css";
 import "./Style/Forms.css";
@@ -8,7 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import { PersonalProfile } from "./Interfaces/PersonalProfile";
 import { Semester } from "./Interfaces/Semester/Semester";
 import { RegisteredExams } from "./Interfaces/Exams/RegisteredExams";
-import { ChooseFaculty } from "./Interfaces/ChooseFaculty";
+import ChooseFaculty from "./Interfaces/ChooseFaculty";
 import { RegisterExams } from "./Interfaces/Exams/RegisterExams";
 import { ExamHistory } from "./Interfaces/Exams/ExamHistory";
 import { Settings } from "./Interfaces/Settings";
@@ -22,13 +21,12 @@ import { ManageSystem } from "./Interfaces/ManageSystem";
 import { BusSchedule } from "./Interfaces/BusSchedule";
 
 export default observer(function App() {
-  const [faculty, setFaculty] = useState(false);
-  const { loggedIn, role } = useStore().userStore;
+  const { loggedIn, role, faculty } = useStore().userStore;
 
   return (
     <div className="App">
       {!loggedIn && <LoginPage />}
-      {loggedIn && !faculty && <ChooseFaculty setFaculty={setFaculty} />}
+      {loggedIn && !faculty && <ChooseFaculty />}
       {loggedIn && faculty && <Header role={role!} />}
       {loggedIn && faculty && (
         <main>

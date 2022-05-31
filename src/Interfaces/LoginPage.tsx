@@ -29,9 +29,8 @@ export const LoginPage = () => {
 
   return (
     <div className="col4 off4">
-      <div className="login-background"></div>
       <form
-        className="border-radius-light "
+        className="border-radius-light loginform boxshadow"
         onSubmit={(e) => e.preventDefault()}
       >
         <h2>KYÇUNI NË SISTEM</h2>

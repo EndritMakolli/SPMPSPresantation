@@ -71,7 +71,7 @@ interface MenuProps {
 
 const SingleMenu = ({ headerItem, role }: MenuProps) => {
   return (
-    <Menu iconShape="circle">
+    <Menu iconShape="circle" key={headerItem.icon}>
       {checkForRole(headerItem, role) && (
         <MenuItem key={headerItem.title} icon={headerItem.icon}>
           <Link to={headerItem.linkTo}>{headerItem.title}</Link>

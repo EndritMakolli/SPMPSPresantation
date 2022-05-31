@@ -61,7 +61,7 @@ input {
 }
 
 input:focus {
-  border-color: #123937;
+  border-color: #164341;
   color: white;
-  background-color: #657170;
+  background-color: #b1c0bf;
 }

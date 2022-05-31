@@ -9,7 +9,7 @@ export const StudentProfile = () => {
       <section className="contents" id="studentProfile">
         <div className="personalProfileBlock">
           <img
-            src="%PUBLIC_URL%/icons/student-profile.png"
+            src="https://res.cloudinary.com/spms/image/upload/v1653323826/profile_pictures/testtina2.jpg"
             alt="Fotoja e juaj"
           />
         </div>

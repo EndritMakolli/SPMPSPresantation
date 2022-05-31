@@ -1,47 +1,39 @@
 import { Link } from "react-router-dom";
 import "../Style/ChooseFaculty.css";
-import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlined";
+import FacultyIcon from "../Media/account_balance_FILL0_wght700_GRAD200_opsz48.svg";
+import { useStore } from "../Stores/Store";
+import { observer } from "mobx-react-lite";
 
-interface ChooseFacultyProps {
-  setFaculty: (b: boolean) => void;
-}
+export default observer(function ChooseFaculty() {
+  const { setFaculty, userFaculties, getFacultiesForUser } =
+    useStore().userStore;
 
-export const ChooseFaculty = ({ setFaculty }: ChooseFacultyProps) => {
+  if (!userFaculties) getFacultiesForUser();
+
   return (
-    <section id="chooseFaculty">
-      <h1>
-        Ju lutem zgjedhni fakultetin për të cilin doni të shihni informatat
-      </h1>
-      <div>
-        <Link to="profile/personal">
-          <article onClick={() => setFaculty(true)}>
-            <AccountBalanceOutlinedIcon fontSize="large" />
-            <p>Shkenca Kompjuterike dhe Inxhinieri</p>
-            <p>Bachelor</p>
-          </article>
-        </Link>
-        <Link to="profile/personal">
-          <article>
-            <AccountBalanceOutlinedIcon fontSize="large" />
-            <p>Shkenca Kompjuterike dhe Inxhinieri</p>
-            <p>Bachelor</p>
-          </article>
-        </Link>
-        <Link to="profile/personal">
-          <article>
-            <AccountBalanceOutlinedIcon fontSize="large" />
-            <p>Shkenca Kompjuterike dhe Inxhinieri</p>
-            <p>Bachelor</p>
-          </article>
-        </Link>
-        <Link to="profile/personal">
-          <article>
-            <AccountBalanceOutlinedIcon fontSize="large" />
-            <p>Shkenca Kompjuterike dhe Inxhinieri</p>
-            <p>Bachelor</p>
-          </article>
-        </Link>
-      </div>
-    </section>
+    <>
+      {
+        <section className="boxshadow" id="chooseFaculty">
+          <h1>
+            Ju lutem zgjedhni fakultetin për të cilin doni të shihni informatat
+          </h1>
+          <div>
+            {!userFaculties && (
+              <p className="font-large text-white">Waiting...</p>
+            )}
+            {userFaculties?.map((item) => {
+              return (
+                <article className="pad-lg" onClick={() => setFaculty(item)}>
+                  <Link to="profile/personal" key={item.facultyID}>
+                    <img src={FacultyIcon} alt="" />
+                    <p className="font-medium">{item.facultyName}</p>
+                  </Link>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      }
+    </>
   );
-};
+});
