@@ -8,6 +8,9 @@
 
 html {
   height: 100%;
+  background-image: url("./Media/background2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .App {
@@ -46,6 +49,11 @@ main section {
   background-color: #f8f7f4;
   margin-top: 2.5%;
   min-height: 80vh;
-  border-radius: 25px;
+  border-radius: 10px;
   padding: 1.25%;
+  box-shadow: -1px 3px 3px gray;
+}
+
+.boxshadow {
+  box-shadow: -1px 3px 3px gray;
 }

@@ -6,7 +6,7 @@ export const Semester = () => {
     <>
       <h1>Semestri</h1>
       <section className="contents" id="semester">
-        <article id="register-semester">
+        <article className="full-height-column justify-between">
           <h2>Regjistro semestrin</h2>
           <form className="" onSubmit={(e) => e.preventDefault()}>
             <label htmlFor="select">Semestri i studimeve</label>
@@ -29,7 +29,7 @@ export const Semester = () => {
           />
         </article>
         <span className="dotted-line"></span>
-        <article>
+        <article className="full-height-column">
           <h2>Informata rreth semestrit</h2>
           <Message
             contents="Momentalisht jeni në semestrin e parë të studimeve!"

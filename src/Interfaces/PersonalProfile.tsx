@@ -1,13 +1,18 @@
 import "../Style/PersonalProfile.css";
 import { DataField } from "../Components/Common/DataField";
+import { useStore } from "../Stores/Store";
 
 export const PersonalProfile = () => {
+  const { user } = useStore().userStore;
   return (
     <>
       <h1 id="title">Profili personal</h1>
       <section className="contents" id="personalProfile">
         <div className="personalProfileBlock">
-          <DataField label="Emri dhe mbiemri" contents="Rilind Bicaj" />
+          <DataField
+            label="Emri dhe mbiemri"
+            contents={user?.firstName + " - " + user?.lastName}
+          />
           <DataField label="Emri i prindit" contents="Sadik Bicaj" />
           <DataField label="Ditëlindja" contents="22 Dhjetor, 2000" />
           <DataField label="Mosha" contents="21 vjeç" />
@@ -18,7 +23,7 @@ export const PersonalProfile = () => {
 
         <div className="personalProfileBlock">
           <img
-            src="https://engineering.unl.edu/images/staff/Kayla-Person.jpg"
+            src="https://res.cloudinary.com/spms/image/upload/v1653323826/profile_pictures/testtina2.jpg"
             alt="Fotoja e juaj"
           />
         </div>

@@ -1,0 +1,22 @@
+.manage-option {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+  min-height: 150px;
+  padding: 1%;
+}
+
+.manage-option img {
+  width: 50%;
+  transition: all 0.1s ease-in-out;
+}
+
+.manage-option img:hover {
+  filter: drop-shadow(10px 1px 10px gray);
+}
+
+.manage-option span {
+  font-size: 1.5em;
+}

@@ -6,6 +6,11 @@ table {
   table-layout: auto;
 }
 
+.table-fixed {
+  table-layout: fixed;
+  text-align: center;
+}
+
 table button {
   margin: 1%;
   border: none;

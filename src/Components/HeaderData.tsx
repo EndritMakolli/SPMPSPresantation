@@ -24,12 +24,6 @@ export interface HeaderItem {
 
 export const data: HeaderItem[] = [
   {
-    roles: ["ADMIN"],
-    title: "Menaxho sistemin",
-    linkTo: "/manage",
-    icon: <DashboardOutlinedIcon />,
-  },
-  {
     roles: ["ALL"],
     title: "Profili im",
     linkTo: "/profile/personal",
@@ -74,7 +68,7 @@ export const data: HeaderItem[] = [
     ],
   },
   {
-    roles: ["ALL"],
+    roles: ["STUDENT"],
     title: "Semestri",
     linkTo: "/semester",
     icon: <CalendarTodayOutlinedIcon />,
@@ -122,6 +116,12 @@ export const data: HeaderItem[] = [
     title: "Raporte",
     linkTo: "/reports",
     icon: <AssessmentOutlinedIcon />,
+  },
+  {
+    roles: ["ADMIN"],
+    title: "Menaxho sistemin",
+    linkTo: "/admin",
+    icon: <DashboardOutlinedIcon />,
   },
   {
     roles: ["ALL"],

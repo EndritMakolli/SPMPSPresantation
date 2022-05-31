@@ -76,3 +76,77 @@ span.dataField {
   border-radius: 10px;
   user-select: none;
 }
+
+.full-height-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  width: 100%;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.col4 {
+  width: 50%;
+}
+
+.off4 {
+  margin-left: 25%;
+}
+
+.border-radius-light {
+  border-radius: 10px;
+}
+
+.text-white {
+  color: white;
+}
+
+.font-medium {
+  font-size: 1.2em;
+}
+
+.font-large {
+  font-size: 1.5em;
+}
+
+.border-dark-sm {
+  border: 1px solid #062726;
+}
+
+.border-dark-md {
+  border: 2px solid #062726;
+}
+
+.pad-sm {
+  padding: 1%;
+}
+
+.pad-lg {
+  padding: 2.5%;
+}
+
+.loginform {
+  height: 70vh;
+  margin-top: 15vh;
+}

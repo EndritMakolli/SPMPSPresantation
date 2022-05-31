@@ -30,6 +30,8 @@ select {
 form {
   padding: 2.5%;
   display: flex;
+  min-height: 60%;
+  min-width: 100%;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -59,7 +61,7 @@ input {
 }
 
 input:focus {
-  border-color: #123937;
+  border-color: #164341;
   color: white;
-  background-color: #657170;
+  background-color: #b1c0bf;
 }
