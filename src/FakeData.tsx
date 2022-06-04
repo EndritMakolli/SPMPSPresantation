@@ -1,8 +1,10 @@
 import { BusSchedule } from "./Types/BusSchedule";
+import { Faculty } from "./Types/Faculty";
+import { Location } from "./Types/Location";
 import { User } from "./Types/User";
 
 export const fakeStudent: User = {
-  userId: "ad19316c-5a76-4f00-91dd-429d5ab545cf",
+  userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
   firstName: "Rilind",
   lastName: "Bicaj",
   parentName: "Sadik Bicaj",
@@ -42,6 +44,11 @@ export const fakeAdmin: User = {
 };
 
 export const Users = [fakeStudent, fakeAdmin];
+
+export const fakeFaculty: Faculty = {
+  facultyID: 1,
+  facultyName: "Shkenca Kompjuterike dhe Inxhinieri - Bachelors",
+};
 
 export const FakeSchedules: BusSchedule[] = [
   {
@@ -89,5 +96,24 @@ export const FakeSchedules: BusSchedule[] = [
         arrivalTime: "14:40",
       },
     ],
+  },
+];
+
+export const fakeLocations: Location[] = [
+  {
+    locationId: 1,
+    locationName: "Prishtinë",
+  },
+  {
+    locationId: 2,
+    locationName: "Gjilan",
+  },
+  {
+    locationId: 3,
+    locationName: "Gjakovë",
+  },
+  {
+    locationId: 4,
+    locationName: "Istog",
   },
 ];

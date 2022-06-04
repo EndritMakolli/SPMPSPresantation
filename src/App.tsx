@@ -18,7 +18,8 @@ import { Posts } from "./Interfaces/Posts";
 import { observer } from "mobx-react";
 import { useStore } from "./Stores/Store";
 import { ManageSystem } from "./Interfaces/ManageSystem";
-import BusSchedule from "./Interfaces/BusSchedule";
+import BusSchedule from "./Components/BusSchedules/BusSchedule";
+import "./Style/Columns.css";
 
 export default observer(function App() {
   const { loggedIn, role, faculty } = useStore().userStore;

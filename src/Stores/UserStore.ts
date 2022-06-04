@@ -1,14 +1,14 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../Agent";
-import { fakeAdmin, fakeStudent } from "../FakeData";
+import { fakeAdmin, fakeStudent, fakeFaculty } from "../FakeData";
 import { Faculty } from "../Types/Faculty";
 import { User } from "../Types/User";
 
 export default class UserStore {
-  loggedIn: boolean = false;
-  role: string | undefined = undefined;
-  faculty: Faculty | undefined = undefined;
-  user: User | undefined = undefined;
+  loggedIn: boolean = true;
+  role: string | undefined = "ADMIN";
+  faculty: Faculty | undefined = fakeFaculty;
+  user: User | undefined = fakeAdmin;
   userFaculties: Faculty[] | undefined = undefined;
 
   constructor() {
@@ -32,7 +32,7 @@ export default class UserStore {
     //   })
     //   .catch(() => console.log("Cookie login error!"));
     setTimeout(() => {
-      let user = fakeStudent;
+      let user = fakeAdmin;
       this.user = user;
       this.role = this.user?.role;
       this.loggedIn = true;

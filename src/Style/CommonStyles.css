@@ -106,6 +106,12 @@ a {
   width: 100%;
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .col4 {
   width: 50%;
 }
@@ -143,6 +149,14 @@ a {
 }
 
 .pad-lg {
+  padding: 2.5%;
+}
+
+.mg-sm {
+  margin: 1%;
+}
+
+.mg-lg {
   padding: 2.5%;
 }
 

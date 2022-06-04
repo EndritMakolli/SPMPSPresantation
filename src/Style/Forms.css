@@ -1,7 +1,8 @@
 button {
   background-color: #062726;
   color: white;
-  padding: 2.5% 5% 2.5% 5%;
+  padding: 7px 15px 7px 15px;
+  margin: 10px;
 
   border: 0.2px solid #3a4b4a;
   border-radius: 5px;
