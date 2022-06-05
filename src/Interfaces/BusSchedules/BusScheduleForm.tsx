@@ -5,7 +5,8 @@ interface Props {
   schedule: BusSchedule;
   mode: "EDIT" | "CREATE";
   onSelectChange: (id: number, name: string) => void;
-  locations: Location[];
+  unassignedLocations: Location[];
+  assignedLocations: Location[];
   onInputChange: (e: React.SyntheticEvent<HTMLInputElement>) => void;
   onCreateClick: () => void;
   onCancelClick: (sch: BusSchedule) => void;
@@ -16,12 +17,15 @@ export const BusScheduleForm = ({
   schedule,
   mode,
   onSelectChange,
-  locations,
+  unassignedLocations,
+  assignedLocations,
   onInputChange,
   onCreateClick,
   onUpdateClick,
   onCancelClick,
 }: Props) => {
+  let locations = mode === "EDIT" ? assignedLocations : unassignedLocations;
+
   return (
     <div className="column col-6 off-3 align-center justify-between pad-sm">
       <div className="row">
@@ -40,7 +44,11 @@ export const BusScheduleForm = ({
         >
           {locations.map((opt) => {
             return (
-              <option value={opt.locationId} id={opt.locationName}>
+              <option
+                key={opt.locationId}
+                value={opt.locationId}
+                id={opt.locationName}
+              >
                 {opt.locationName}
               </option>
             );

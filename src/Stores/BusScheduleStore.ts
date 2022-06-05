@@ -33,6 +33,17 @@ export default class BusScheduleStore {
     return Array.from(this.locations.values());
   };
 
+  getLocationsFromSchedules = (): Location[] => {
+    return Array.from(
+      this.getSchedules().map((sch) => {
+        return {
+          locationId: sch.locationId,
+          locationName: sch.locationName,
+        };
+      })
+    );
+  };
+
   getUnassignedLocations = () => {
     return this.getLocations().filter(
       (loc) => this.schedules.get(loc.locationId) === undefined
@@ -76,10 +87,6 @@ export default class BusScheduleStore {
     );
   };
 
-  isInMode = (mode: string): boolean => {
-    return this.mode === mode;
-  };
-
   /**
    * Sets the desired bus schedule as the current schedule being worked on.
    * @param {number} scheduleId - the ID of the schedule being selected.
@@ -110,8 +117,31 @@ export default class BusScheduleStore {
     this.currentSlot = editedSlot;
   };
 
+  /**
+   * Saves the changes done to the current schedule.
+   * @param editedSchedule the changed schedule object to replace the current one with
+   */
+
   updateSchedule = (editedSchedule: BusSchedule) => {
     this.currentSchedule = editedSchedule;
+  };
+
+  /**
+   * Deletes the currently selected schedule, selects the next schedule to show.
+   */
+
+  deleteSchedule = () => {
+    this.schedules.delete(this.currentSchedule!.locationId);
+    this.currentSchedule = this.getSchedules()[0];
+  };
+
+  /**
+   * Checks whether there are any registered bus schedules in the store.
+   * @returns true if there's available schedules, false otherwise
+   */
+
+  hasSchedules = () => {
+    return this.schedules.size !== 0;
   };
 
   /**
@@ -177,16 +207,5 @@ export default class BusScheduleStore {
       a.departTime.localeCompare(b.departTime)
     );
     this.setReadMode();
-  };
-
-  handleCloseButton = (slotId?: number) => {
-    if (this.mode === "READ") {
-      this.deleteSlot(slotId!);
-    } else if (this.mode === "EDIT") {
-      this.setReadMode();
-    } else if (this.mode === "CREATE") {
-      this.setReadMode();
-    }
-    //redundant 3rd if
   };
 }

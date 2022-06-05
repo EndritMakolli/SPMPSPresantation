@@ -6,7 +6,7 @@ import { User } from "../Types/User";
 
 export default class UserStore {
   loggedIn: boolean = true;
-  role: string | undefined = "ADMIN";
+  role: string | undefined;
   faculty: Faculty | undefined = fakeFaculty;
   user: User | undefined = fakeAdmin;
   userFaculties: Faculty[] | undefined = undefined;

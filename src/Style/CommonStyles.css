@@ -176,3 +176,9 @@ a {
 .align-center {
   align-items: center;
 }
+
+.aligned-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+}

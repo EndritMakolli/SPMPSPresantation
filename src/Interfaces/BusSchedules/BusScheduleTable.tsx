@@ -11,7 +11,7 @@ interface Props {
   adminMode: boolean;
   onSlotEditClick: (slotId: number) => void;
   onSlotCreateClick: () => void;
-  onSlotEditCancel: () => void;
+  onSlotEditCancel: (slotId?: number) => void;
   onSlotEditSave: () => void;
   onSlotInputChange: (e: React.SyntheticEvent<HTMLInputElement>) => void;
 }
@@ -24,21 +24,23 @@ export const BusScheduleTable = ({
   onSlotEditSave,
   currentSlot,
   onSlotInputChange,
-  adminMode = true,
+  adminMode,
   onSlotEditClick,
 }: Props) => {
   return (
     <>
       <table className="table-fixed">
         <thead>
-          <th>Nisjet nga pika</th>
-          <th>Nisjet nga objekti</th>
-          <th>Operacionet</th>
+          <tr>
+            <th className="text-center">Nisjet nga pika</th>
+            <th className="text-center">Nisjet nga objekti</th>
+            {adminMode && <th className="text-center">Operacionet</th>}
+          </tr>
         </thead>
         <tbody>
           {slots.map((slot) => {
             return (
-              <tr className="font-large">
+              <tr key={slot.slotId} className="font-large">
                 {mode === "EDIT" && currentSlot?.slotId === slot.slotId && (
                   <>
                     <td>
@@ -73,7 +75,7 @@ export const BusScheduleTable = ({
                       </span>
                     )}
                     {(!currentSlot || currentSlot?.slotId === slot.slotId) && (
-                      <span onClick={onSlotEditCancel}>
+                      <span onClick={() => onSlotEditCancel(slot.slotId)}>
                         <CloseIcon fontSize="large" />
                       </span>
                     )}
@@ -104,7 +106,7 @@ export const BusScheduleTable = ({
                 />
               </td>
               <td>
-                <span onClick={onSlotEditCancel}>
+                <span onClick={() => onSlotEditCancel()}>
                   <CloseIcon fontSize="large" />
                 </span>
 

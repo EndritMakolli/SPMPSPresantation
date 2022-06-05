@@ -1,5 +1,5 @@
 import { observer } from "mobx-react";
-import { Loader } from "../Loader";
+import { Loader } from "../../Components/Loader";
 import { useStore } from "../../Stores/Store";
 
 import React from "react";
@@ -12,6 +12,7 @@ export default observer(function BusSchedule() {
   const {
     currentSchedule,
     mode,
+    deleteSchedule,
     updateSlot,
     currentSlot,
     setScheduleCreateMode,
@@ -20,11 +21,15 @@ export default observer(function BusSchedule() {
     saveChangesToSlot,
     setSlotEditMode,
     setReadMode,
+    deleteSlot,
     getUnassignedLocations,
     updateSchedule,
     setScheduleEditingMode,
+    hasSchedules,
     createSchedule,
+    getLocationsFromSchedules,
   } = useStore().busScheduleStore;
+
   const { role } = useStore().userStore;
 
   const slotInputChangeHandler = (
@@ -58,9 +63,17 @@ export default observer(function BusSchedule() {
     setSlotEditMode(slotId);
   };
 
+  /**
+   * Handles clikcing the save icon after editing a slot.
+   */
+
   const saveEditedSlotHandler = () => {
     saveChangesToSlot();
   };
+
+  /**
+   * Handles clicking the Edit Schedule button.
+   */
 
   const editScheduleHandler = () => {
     setScheduleEditingMode();
@@ -96,6 +109,21 @@ export default observer(function BusSchedule() {
   };
 
   /**
+   * Handles clicking the X icon for a slot. If the slot is currently being edited,
+   * it will fall back to read mode. Else, it will delete the slot whose ID is provided
+   * as a parameter. The parameter is optional, so it can be used for simply cancelling
+   * an editing session.
+   * @param slotId - optional, the ID of the slot to be deleted.
+   */
+
+  const deleteSlotClickHandler = (slotId?: number) => {
+    if (mode === "EDIT") {
+      alert("Clicked after editing");
+      setReadMode();
+    } else if (slotId) deleteSlot(slotId);
+  };
+
+  /**
    * Handles clicking the confirmation button after editing a schedule.
    */
 
@@ -105,11 +133,11 @@ export default observer(function BusSchedule() {
   };
 
   /**
-   * Handles clicking the X icon while editing a schedule slot.
+   * Handles clicking the Delete Schedule button.
    */
 
-  const cancelSlotEditingHandler = () => {
-    setReadMode();
+  const deleteScheduleHandler = () => {
+    deleteSchedule();
   };
 
   /**
@@ -128,8 +156,10 @@ export default observer(function BusSchedule() {
         {isLoading && <Loader />}
         {!isLoading && (
           <>
-            {!formIsOpen() && (
+            {!formIsOpen() && hasSchedules() && (
               <BusScheduleHeading
+                adminMode={role === "ADMIN"}
+                onDeleteScheduleClick={deleteScheduleHandler}
                 onEditScheduleClick={editScheduleHandler}
                 onCreateScheduleClick={handleCreateSchedule}
               />
@@ -142,24 +172,40 @@ export default observer(function BusSchedule() {
                 onCancelClick={handleCancelScheduleEditing}
                 onCreateClick={createSchedule}
                 onUpdateClick={editSaveChangesHandler}
-                locations={getUnassignedLocations()}
+                unassignedLocations={getUnassignedLocations()}
+                assignedLocations={getLocationsFromSchedules()}
                 onInputChange={handleScheduleInputChange}
               />
             )}
-            {!formIsOpen() && (
+            {!formIsOpen() && hasSchedules() && (
               <BusScheduleTable
-                adminMode
+                adminMode={role === "ADMIN"}
                 mode={mode!}
                 slots={currentSchedule?.slots!}
                 currentSlot={currentSlot}
                 onSlotCreateClick={handleSlotCreate}
-                onSlotEditCancel={cancelSlotEditingHandler}
+                onSlotEditCancel={deleteSlotClickHandler}
                 onSlotEditClick={editSlotHandler}
                 onSlotEditSave={saveEditedSlotHandler}
                 onSlotInputChange={slotInputChangeHandler}
               />
             )}
           </>
+        )}
+        {!isLoading && !hasSchedules() && !formIsOpen() && (
+          <div className="column col-6 off-3">
+            <p className="font-large text-center">
+              Nuk ka orare të regjistruara në sistem.
+            </p>
+            {role === "ADMIN" && (
+              <button
+                className="align-center col-3 off-4"
+                onClick={handleCreateSchedule}
+              >
+                SHTO NJË ORAR
+              </button>
+            )}
+          </div>
         )}
       </section>
     </>

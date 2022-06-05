@@ -1,14 +1,21 @@
 import { useStore } from "../../Stores/Store";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import EditIcon from "@mui/icons-material/Edit";
+import CloseIcon from "@mui/icons-material/Close";
+import AddIcon from "@mui/icons-material/Add";
 
 interface BusScheduleHeadingProps {
+  adminMode: boolean;
   onEditScheduleClick: () => void;
   onCreateScheduleClick: () => void;
+  onDeleteScheduleClick: () => void;
 }
 
 export const BusScheduleHeading = ({
   onCreateScheduleClick,
   onEditScheduleClick,
+  onDeleteScheduleClick,
+  adminMode,
 }: BusScheduleHeadingProps) => {
   const {
     currentSchedule,
@@ -20,7 +27,7 @@ export const BusScheduleHeading = ({
     <>
       {!isInScheduleCreateMode() && (
         <div className="row justify-between">
-          <div className="col-4">
+          <div className="col-4 aligned-text">
             <span className="font-large">Zgjedh lokacionin : </span>
             <select
               onChange={(e) => selectSchedule(parseInt(e.target.value))}
@@ -30,12 +37,14 @@ export const BusScheduleHeading = ({
             >
               {getSchedules().map((opt) => {
                 return (
-                  <option value={opt.locationId}>{opt.locationName}</option>
+                  <option key={opt.locationId} value={opt.locationId}>
+                    {opt.locationName}
+                  </option>
                 );
               })}
             </select>
           </div>
-          <div className="col3">
+          <div className="col3 aligned-text">
             <a href={currentSchedule?.departingPlaceURL}>
               <LocationOnOutlinedIcon fontSize="large" />
             </a>
@@ -44,13 +53,24 @@ export const BusScheduleHeading = ({
               {currentSchedule?.departingPlace}
             </span>
           </div>
-          <div className="col-4">
-            <button onClick={onCreateScheduleClick}>
-              <LocationOnOutlinedIcon fontSize="small" />
-              SHTO NJË ORAR
-            </button>
-            <button onClick={onEditScheduleClick}>MODIFIKO KËTË ORAR</button>
-          </div>
+          {adminMode && (
+            <>
+              <div className="row justify-center">
+                <button onClick={onCreateScheduleClick}>
+                  <AddIcon fontSize="small" />
+                  SHTO NJË ORAR
+                </button>
+                <button className="col-9" onClick={onEditScheduleClick}>
+                  <EditIcon fontSize="small" />
+                  MODIFIKO KËTË ORAR
+                </button>
+                <button className="col-9" onClick={onDeleteScheduleClick}>
+                  <CloseIcon fontSize="small" />
+                  FSHIJ KËTË ORAR
+                </button>
+              </div>
+            </>
+          )}
         </div>
       )}
     </>

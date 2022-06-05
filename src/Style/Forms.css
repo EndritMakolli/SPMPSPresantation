@@ -3,11 +3,21 @@ button {
   color: white;
   padding: 7px 15px 7px 15px;
   margin: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
 
   border: 0.2px solid #3a4b4a;
   border-radius: 5px;
   font-weight: bold;
   transition: all 0.1s ease-in-out;
+}
+
+button > svg {
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 3px;
+  margin-right: 10px;
 }
 
 button:hover {
@@ -50,15 +60,16 @@ main span {
 }
 
 input {
-  padding: 15px 20px 15px 20px;
+  /* padding: 15px 20px 15px 20px; */
+  padding: 1.25%;
   border-radius: 5px;
   border: 2px solid #3a4b4a;
   color: #3a4b4a;
   width: 40%;
-  background-color: #f5fffe;
   transition: all 0.2s ease-in-out;
   outline: none;
   font-size: 1em;
+  font: optional;
 }
 
 input:focus {
