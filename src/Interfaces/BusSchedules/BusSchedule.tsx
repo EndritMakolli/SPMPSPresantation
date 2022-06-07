@@ -7,6 +7,7 @@ import { BusScheduleHeading } from "./BusScheduleHeading";
 import { BusScheduleForm } from "./BusScheduleForm";
 import { BusSchedule } from "../../Types/BusSchedule";
 import { BusScheduleTable } from "./BusScheduleTable";
+import { BusScheduleViewModes } from "../../Stores/BusScheduleStore";
 
 export default observer(function BusSchedule() {
   const {
@@ -28,6 +29,7 @@ export default observer(function BusSchedule() {
     hasSchedules,
     createSchedule,
     getLocationsFromSchedules,
+    isInSlotCreateMode,
   } = useStore().busScheduleStore;
 
   const { role } = useStore().userStore;
@@ -117,8 +119,10 @@ export default observer(function BusSchedule() {
    */
 
   const deleteSlotClickHandler = (slotId?: number) => {
-    if (mode === "EDIT") {
-      alert("Clicked after editing");
+    if (
+      mode === BusScheduleViewModes.CREATE_SLOT ||
+      mode === BusScheduleViewModes.EDIT_SLOT
+    ) {
       setReadMode();
     } else if (slotId) deleteSlot(slotId);
   };
@@ -146,7 +150,11 @@ export default observer(function BusSchedule() {
    */
 
   const formIsOpen = () => {
-    return (mode === "EDIT" || mode === "CREATE") && currentSlot === undefined;
+    return (
+      (mode === BusScheduleViewModes.EDIT_SCHEDULE ||
+        mode === BusScheduleViewModes.CREATE_SCHEDULE) &&
+      currentSlot === undefined
+    );
   };
 
   return (
@@ -159,6 +167,7 @@ export default observer(function BusSchedule() {
             {!formIsOpen() && hasSchedules() && (
               <BusScheduleHeading
                 adminMode={role === "ADMIN"}
+                buttonsDisabled={isInSlotCreateMode()}
                 onDeleteScheduleClick={deleteScheduleHandler}
                 onEditScheduleClick={editScheduleHandler}
                 onCreateScheduleClick={handleCreateSchedule}
@@ -167,7 +176,11 @@ export default observer(function BusSchedule() {
             {formIsOpen() && (
               <BusScheduleForm
                 schedule={currentSchedule!}
-                mode={mode === "CREATE" ? mode : "EDIT"}
+                mode={
+                  mode === BusScheduleViewModes.CREATE_SCHEDULE
+                    ? mode
+                    : BusScheduleViewModes.EDIT_SCHEDULE
+                }
                 onSelectChange={handleCreateScheduleOptionChange}
                 onCancelClick={handleCancelScheduleEditing}
                 onCreateClick={createSchedule}

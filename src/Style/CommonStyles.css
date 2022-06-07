@@ -102,8 +102,11 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  flex-wrap: wrap;
   width: 100%;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
 
 .column {
@@ -136,6 +139,10 @@ a {
   font-size: 1.4em;
 }
 
+.bold {
+  font-weight: bolder;
+}
+
 .border-dark-sm {
   border: 1px solid #062726;
 }
@@ -157,7 +164,7 @@ a {
 }
 
 .mg-lg {
-  padding: 2.5%;
+  margin: 2.5%;
 }
 
 .loginform {
@@ -181,4 +188,12 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.underlined {
+  border-bottom: 2px solid black;
+}
+
+.underlined-white {
+  border-bottom: 2px solid white;
 }

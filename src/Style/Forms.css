@@ -20,6 +20,16 @@ button > svg {
   margin-right: 10px;
 }
 
+button:disabled {
+  background-color: #b1c0bf;
+  color: #164341;
+}
+
+button:disabled:hover {
+  background-color: #b1c0bf;
+  color: #164341;
+}
+
 button:hover {
   background-color: #3a4b4a;
 }
@@ -42,7 +52,7 @@ form {
   padding: 2.5%;
   display: flex;
   min-height: 60%;
-  min-width: 100%;
+  /*min-width: 100%;*/
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -65,7 +75,7 @@ input {
   border-radius: 5px;
   border: 2px solid #3a4b4a;
   color: #3a4b4a;
-  width: 40%;
+  width: 60%;
   transition: all 0.2s ease-in-out;
   outline: none;
   font-size: 1em;

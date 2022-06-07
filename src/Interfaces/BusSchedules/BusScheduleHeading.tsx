@@ -9,6 +9,7 @@ interface BusScheduleHeadingProps {
   onEditScheduleClick: () => void;
   onCreateScheduleClick: () => void;
   onDeleteScheduleClick: () => void;
+  buttonsDisabled: boolean;
 }
 
 export const BusScheduleHeading = ({
@@ -16,6 +17,7 @@ export const BusScheduleHeading = ({
   onEditScheduleClick,
   onDeleteScheduleClick,
   adminMode,
+  buttonsDisabled,
 }: BusScheduleHeadingProps) => {
   const {
     currentSchedule,
@@ -26,7 +28,7 @@ export const BusScheduleHeading = ({
   return (
     <>
       {!isInScheduleCreateMode() && (
-        <div className="row justify-between">
+        <div className="row justify-between wrap">
           <div className="col-4 aligned-text">
             <span className="font-large">Zgjedh lokacionin : </span>
             <select
@@ -56,15 +58,26 @@ export const BusScheduleHeading = ({
           {adminMode && (
             <>
               <div className="row justify-center">
-                <button onClick={onCreateScheduleClick}>
+                <button
+                  onClick={onCreateScheduleClick}
+                  disabled={buttonsDisabled}
+                >
                   <AddIcon fontSize="small" />
                   SHTO NJË ORAR
                 </button>
-                <button className="col-9" onClick={onEditScheduleClick}>
+                <button
+                  className="col-9"
+                  disabled={buttonsDisabled}
+                  onClick={onEditScheduleClick}
+                >
                   <EditIcon fontSize="small" />
                   MODIFIKO KËTË ORAR
                 </button>
-                <button className="col-9" onClick={onDeleteScheduleClick}>
+                <button
+                  disabled={buttonsDisabled}
+                  className="col-9"
+                  onClick={onDeleteScheduleClick}
+                >
                   <CloseIcon fontSize="small" />
                   FSHIJ KËTË ORAR
                 </button>

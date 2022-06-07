@@ -1,9 +1,10 @@
 import { BusSchedule } from "./Types/BusSchedule";
 import { Faculty } from "./Types/Faculty";
 import { Location } from "./Types/Location";
+import { Student } from "./Types/Student";
 import { User } from "./Types/User";
 
-export const fakeStudent: User = {
+export const fakeStudent: Student = {
   userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
   firstName: "Rilind",
   lastName: "Bicaj",
@@ -21,6 +22,33 @@ export const fakeStudent: User = {
   gender: "Mashkull",
   profilePictureUrl:
     "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+  studentId: "192047139",
+  generation: {
+    generationId: 1,
+    generationName: "19/20",
+  },
+  groups: [
+    {
+      groupId: 1,
+      groupName: "G3a - SHKI BSc.",
+      timeSlot: "Pasdite",
+    },
+    {
+      groupId: 7,
+      groupName: "G6b - ARK BSc.",
+      timeSlot: "Pasdite",
+    },
+  ],
+  specializations: [
+    {
+      specializationId: 3,
+      specializationName: "Përgjithshëm",
+    },
+    {
+      specializationId: 4,
+      specializationName: "Software Systems Engineering",
+    },
+  ],
 };
 
 export const fakeAdmin: User = {
