@@ -2,6 +2,7 @@ import "./App.css";
 import "./Style/CommonStyles.css";
 import "./Style/Forms.css";
 import "./Style/Tables.css";
+import "./Style/Pagination.css";
 import { Header } from "./Components/Header";
 import { Route, Routes } from "react-router-dom";
 import { PersonalProfile } from "./Interfaces/PersonalProfile";
@@ -20,6 +21,7 @@ import { useStore } from "./Stores/Store";
 import { ManageSystem } from "./Interfaces/ManageSystem";
 import BusSchedule from "./Interfaces/BusSchedules/BusSchedule";
 import "./Style/Columns.css";
+import ManageStudents from "./Interfaces/ManageSystem/Students/ManageStudents";
 
 export default observer(function App() {
   const { loggedIn, role, faculty } = useStore().userStore;
@@ -43,6 +45,7 @@ export default observer(function App() {
             <Route path="admin" element={<ManageSystem />} />
             <Route path="posts" element={<Posts />} />
             <Route path="profile/buses" element={<BusSchedule />} />
+            <Route path="admin/students" element={<ManageStudents />} />
           </Routes>
         </main>
       )}

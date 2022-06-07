@@ -32,10 +32,11 @@ export default class UserStore {
     //   })
     //   .catch(() => console.log("Cookie login error!"));
     setTimeout(() => {
-      let user = fakeAdmin;
-      this.user = user;
-      this.role = this.user?.role;
-      this.loggedIn = true;
+      runInAction(() => {
+        this.user = fakeAdmin;
+        this.role = this.user?.role;
+        this.loggedIn = true;
+      });
     }, 1000);
   };
 

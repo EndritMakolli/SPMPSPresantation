@@ -1,9 +1,12 @@
+import { BusScheduleViewModes } from "../../Stores/BusScheduleStore";
 import { BusSchedule } from "../../Types/BusSchedule";
 import { Location } from "../../Types/Location";
 
 interface Props {
   schedule: BusSchedule;
-  mode: "EDIT" | "CREATE";
+  mode:
+    | BusScheduleViewModes.EDIT_SCHEDULE
+    | BusScheduleViewModes.CREATE_SCHEDULE;
   onSelectChange: (id: number, name: string) => void;
   unassignedLocations: Location[];
   assignedLocations: Location[];
@@ -24,7 +27,10 @@ export const BusScheduleForm = ({
   onUpdateClick,
   onCancelClick,
 }: Props) => {
-  let locations = mode === "EDIT" ? assignedLocations : unassignedLocations;
+  let locations =
+    mode === BusScheduleViewModes.EDIT_SCHEDULE
+      ? assignedLocations
+      : unassignedLocations;
 
   return (
     <div className="column col-6 off-3 align-center justify-between pad-sm">
@@ -40,7 +46,7 @@ export const BusScheduleForm = ({
           name="location-pick"
           className="col-3 border-dark-md"
           defaultValue={schedule.locationId}
-          disabled={mode === "EDIT"}
+          disabled={mode === BusScheduleViewModes.EDIT_SCHEDULE}
         >
           {locations.map((opt) => {
             return (
@@ -74,7 +80,7 @@ export const BusScheduleForm = ({
         />
       </div>
       <div className="row justify-center">
-        {mode === "CREATE" ? (
+        {mode === BusScheduleViewModes.CREATE_SCHEDULE ? (
           <button className="font-medium" onClick={onCreateClick}>
             SHTO ORARIN
           </button>

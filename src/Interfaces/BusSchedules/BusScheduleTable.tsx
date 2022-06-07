@@ -3,11 +3,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
 import SaveIcon from "@mui/icons-material/Save";
 import AddIcon from "@mui/icons-material/Add";
+import { BusScheduleViewModes } from "../../Stores/BusScheduleStore";
 
 interface Props {
   slots: BusScheduleSlot[];
   currentSlot: BusScheduleSlot | undefined;
-  mode: string;
+  mode: BusScheduleViewModes;
   adminMode: boolean;
   onSlotEditClick: (slotId: number) => void;
   onSlotCreateClick: () => void;
@@ -41,26 +42,27 @@ export const BusScheduleTable = ({
           {slots.map((slot) => {
             return (
               <tr key={slot.slotId} className="font-large">
-                {mode === "EDIT" && currentSlot?.slotId === slot.slotId && (
-                  <>
-                    <td>
-                      <input
-                        type="time"
-                        name="departTime"
-                        defaultValue={slot.departTime}
-                        onChange={onSlotInputChange}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="time"
-                        name="arrivalTime"
-                        onChange={onSlotInputChange}
-                        defaultValue={slot.arrivalTime}
-                      />
-                    </td>
-                  </>
-                )}
+                {mode === BusScheduleViewModes.EDIT_SLOT &&
+                  currentSlot?.slotId === slot.slotId && (
+                    <>
+                      <td>
+                        <input
+                          type="time"
+                          name="departTime"
+                          defaultValue={slot.departTime}
+                          onChange={onSlotInputChange}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="time"
+                          name="arrivalTime"
+                          onChange={onSlotInputChange}
+                          defaultValue={slot.arrivalTime}
+                        />
+                      </td>
+                    </>
+                  )}
                 {currentSlot?.slotId !== slot.slotId && (
                   <>
                     <td>{slot.departTime}</td>
@@ -69,7 +71,7 @@ export const BusScheduleTable = ({
                 )}
                 {adminMode && (
                   <td className="row justify-center">
-                    {mode === "READ" && (
+                    {mode === BusScheduleViewModes.READ && (
                       <span onClick={() => onSlotEditClick(slot.slotId)}>
                         <EditIcon fontSize="large" />
                       </span>
@@ -79,17 +81,18 @@ export const BusScheduleTable = ({
                         <CloseIcon fontSize="large" />
                       </span>
                     )}
-                    {mode === "EDIT" && currentSlot?.slotId === slot.slotId && (
-                      <span onClick={onSlotEditSave}>
-                        <SaveIcon fontSize="large" />
-                      </span>
-                    )}
+                    {mode === BusScheduleViewModes.EDIT_SLOT &&
+                      currentSlot?.slotId === slot.slotId && (
+                        <span onClick={onSlotEditSave}>
+                          <SaveIcon fontSize="large" />
+                        </span>
+                      )}
                   </td>
                 )}
               </tr>
             );
           })}
-          {mode === "CREATE" && adminMode && (
+          {mode === BusScheduleViewModes.CREATE_SLOT && adminMode && (
             <tr>
               <td>
                 <input
@@ -118,7 +121,7 @@ export const BusScheduleTable = ({
           )}
         </tbody>
       </table>
-      {mode === "READ" && adminMode && (
+      {mode === BusScheduleViewModes.READ && adminMode && (
         <p className="row justify-center align-center">
           <span onClick={onSlotCreateClick} className="text-center mg-lg">
             <AddIcon fontSize="large" />

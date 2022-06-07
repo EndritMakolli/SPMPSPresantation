@@ -1,12 +1,20 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { fakeLocations, FakeSchedules } from "../FakeData";
 import { BusSchedule, BusScheduleSlot } from "../Types/BusSchedule";
 import { Location } from "../Types/Location";
 import { arrayToMap } from "../utils";
 
+export enum BusScheduleViewModes {
+  CREATE_SCHEDULE,
+  CREATE_SLOT,
+  READ,
+  EDIT_SLOT,
+  EDIT_SCHEDULE,
+}
+
 export default class BusScheduleStore {
   schedules = new Map<number, BusSchedule>();
-  mode: "READ" | "CREATE" | "EDIT" | undefined = "READ";
+  mode: BusScheduleViewModes = BusScheduleViewModes.READ;
   locations: Map<number, Location> = arrayToMap<Location>(
     fakeLocations,
     "locationId"
@@ -56,22 +64,24 @@ export default class BusScheduleStore {
 
   fetchSchedules = async () => {
     setTimeout(() => {
-      this.schedules = arrayToMap<BusSchedule>(FakeSchedules, "locationId");
-      this.currentSchedule = this.schedules.get(1);
-      this.isLoading = false;
+      runInAction(() => {
+        this.schedules = arrayToMap<BusSchedule>(FakeSchedules, "locationId");
+        this.currentSchedule = this.schedules.get(1);
+        this.isLoading = false;
+      });
     }, 1000);
   };
 
   isInSlotEditingMode = (): boolean => {
-    return this.mode === "EDIT" && this.currentSlot !== undefined;
+    return this.mode === BusScheduleViewModes.EDIT_SLOT;
   };
 
   isInScheduleEditingMode = (): boolean => {
-    return this.mode === "EDIT" && this.currentSchedule !== undefined;
+    return this.mode === BusScheduleViewModes.EDIT_SCHEDULE;
   };
 
   isInSlotCreateMode = (): boolean => {
-    return this.mode === "CREATE" && this.currentSlot?.slotId !== undefined;
+    return this.mode === BusScheduleViewModes.CREATE_SLOT;
   };
 
   /**
@@ -80,11 +90,7 @@ export default class BusScheduleStore {
    */
 
   isInScheduleCreateMode = (): boolean => {
-    return (
-      this.mode === "CREATE" &&
-      (this.currentSchedule?.locationId === -1 || //Initially set to -1, can be changed from the dropdown
-        this.schedules.get(this.currentSchedule!.locationId) === undefined) //Checks to see if the ID isn't in the schedules map
-    );
+    return this.mode === BusScheduleViewModes.CREATE_SCHEDULE;
   };
 
   /**
@@ -153,19 +159,19 @@ export default class BusScheduleStore {
   };
 
   setSlotEditMode = (slotId: number) => {
-    this.mode = "EDIT";
+    this.mode = BusScheduleViewModes.EDIT_SLOT;
     this.selectSlot(slotId);
   };
 
   setReadMode = () => {
-    this.mode = "READ";
+    this.mode = BusScheduleViewModes.READ;
     if (this.schedules.get(this.currentSchedule!.locationId) === undefined)
       this.selectSchedule();
     if (this.currentSlot) this.deselectSlot();
   };
 
   setSlotCreateMode = () => {
-    this.mode = "CREATE";
+    this.mode = BusScheduleViewModes.CREATE_SLOT;
     this.currentSlot = {
       slotId: Math.floor(Math.random() * 500),
       departTime: "",
@@ -174,11 +180,11 @@ export default class BusScheduleStore {
   };
 
   setScheduleEditingMode = () => {
-    this.mode = "EDIT";
+    this.mode = BusScheduleViewModes.EDIT_SCHEDULE;
   };
 
   setScheduleCreateMode = () => {
-    this.mode = "CREATE";
+    this.mode = BusScheduleViewModes.CREATE_SCHEDULE;
     this.currentSchedule = {
       locationId: this.getUnassignedLocations()[0].locationId,
       locationName: this.getUnassignedLocations()[0].locationName,
