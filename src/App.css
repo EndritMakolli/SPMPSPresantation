@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Raleway:wght@400;600&display=swap");
 
+@keyframes fade-in {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -48,12 +57,35 @@ main section {
 .contents {
   background-color: #f8f7f4;
   margin-top: 2.5%;
-  min-height: 80vh;
+  height: 80vh;
   border-radius: 10px;
   padding: 1.25%;
   box-shadow: -1px 3px 3px gray;
 }
 
+section.contents * {
+  animation-name: fade-in;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.1s;
+}
+
 .boxshadow {
   box-shadow: -1px 3px 3px gray;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 30%;
+  margin-top: 10%;
+  left: 35%;
+}
+
+.loader p {
+  margin-top: 2.5%;
+  font-size: 2em;
 }

@@ -1,13 +1,14 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../Agent";
+import { fakeAdmin, fakeStudent, fakeFaculty } from "../FakeData";
 import { Faculty } from "../Types/Faculty";
 import { User } from "../Types/User";
 
 export default class UserStore {
-  loggedIn: boolean = false;
-  role: string | undefined = undefined;
-  faculty: Faculty | undefined = undefined;
-  user: User | undefined = undefined;
+  loggedIn: boolean = true;
+  role: string | undefined;
+  faculty: Faculty | undefined = fakeFaculty;
+  user: User | undefined = fakeAdmin;
   userFaculties: Faculty[] | undefined = undefined;
 
   constructor() {
@@ -18,17 +19,24 @@ export default class UserStore {
   }
 
   cookieLogin = async () => {
-    await agent.Authentication.CookieLogin()
-      .then((res) => {
-        if (res.status === 200) {
-          runInAction(() => {
-            this.user = res.data;
-            this.role = this.user?.role;
-            this.loggedIn = true;
-          });
-        } else console.log("Bad Request!!!!");
-      })
-      .catch(() => console.log("Cookie login error!"));
+    // await agent.Authentication.CookieLogin()
+    //   .then((res) => {
+    //     if (res.status === 200) {
+    //       runInAction(() => {
+    //         let user = fakeAdmin;
+    //         this.user = user;
+    //         this.role = this.user?.role;
+    //         this.loggedIn = true;
+    //       });
+    //     } else console.log("Bad Request!!!!");
+    //   })
+    //   .catch(() => console.log("Cookie login error!"));
+    setTimeout(() => {
+      let user = fakeAdmin;
+      this.user = user;
+      this.role = this.user?.role;
+      this.loggedIn = true;
+    }, 1000);
   };
 
   setFacultyFromSession = async () => {

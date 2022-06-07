@@ -75,3 +75,9 @@ table tbody select {
 table tbody tr:nth-child(2n) select {
   border: 1.5pt solid #f8f7f4;
 }
+
+table input {
+  padding: 1.25%;
+  text-align: center;
+  font-size: large;
+}

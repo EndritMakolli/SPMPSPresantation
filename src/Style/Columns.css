@@ -1,0 +1,35 @@
+.col-2 {
+  width: 16.66%;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.col-4 {
+  width: 33.33%;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.off-2 {
+  margin-left: 16.66%;
+}
+
+.off-3 {
+  margin-left: 25%;
+}
+
+.off-4 {
+  margin-left: 33.33%;
+}
+
+.off-5 {
+  margin-left: 41.66%;
+}
+
+.off-6 {
+  margin-left: 50%;
+}
