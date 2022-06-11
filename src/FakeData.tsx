@@ -2,7 +2,13 @@ import { BusSchedule } from "./Types/BusSchedule";
 import { Faculty } from "./Types/Faculty";
 import { Location } from "./Types/Location";
 import { Student } from "./Types/Student";
+import { AcademicStaff } from "./Types/AcademicStaff";
 import { User } from "./Types/User";
+import { AdministriveStaff } from "./Types/AdministriveStaff";
+import { Course } from "./Types/Course";
+import { Class } from "./Types/Class";
+import { LectureHall } from "./Types/LectureHall";
+import { Group } from "./Types/Group";
 
 export const fakeStudent: Student = {
   userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
@@ -29,14 +35,370 @@ export const fakeStudent: Student = {
   },
   groups: [
     {
-      groupId: 1,
+      groupId: "1",
       groupName: "G3a - SHKI BSc.",
       timeSlot: "Pasdite",
+      classes: [
+        {
+          classId: 14,
+          startingTime: "17:40",
+          endingTime: "19:10",
+          lectureHall: {
+            lectureHallId: "17",
+            lectureHallName: "A007",
+            capacity: "120",
+            location: "Kati i pare",
+          },
+          course: {
+          courseId: "B14",
+          courseCode: "433",
+          courseName: "LAB 2",
+          ECTS: "7",
+          academicStaff: [
+            {
+              userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+              firstName: "Endrit",
+              lastName: "Makolli",
+              parentName: "Sami Makolli",
+              role: "STUDENT",
+              city: "Prishtine",
+              address: "Azem Jashanica 3",
+              birthday: "13 korrik, 2001",
+              country: "Kosovë",
+              zipCode: "10000",
+              age: "20",
+              personalNumber: "--------",
+              telephone: "+383 44 991 014",
+              email: "em47593@ubt-uni.net",
+              gender: "Mashkull",
+              profilePictureUrl:
+                "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+              academicStaffId: "192047593",
+              academicLevels: [
+                {
+                  academicLevelId: 1,
+                  academicLevelName: "G3a - SHKI BSc.",
+                },
+                {
+                  academicLevelId: 2,
+                  academicLevelName: "G3b - SHKI BSc.",
+                },
+              ],
+            },
+            {
+              userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+              firstName: "Endrit2",
+              lastName: "Makolli",
+              parentName: "Sami Makolli",
+              role: "STUDENT",
+              city: "Prishtine",
+              address: "Azem Jashanica 3",
+              birthday: "13 korrik, 2001",
+              country: "Kosovë",
+              zipCode: "10000",
+              age: "20",
+              personalNumber: "--------",
+              telephone: "+383 44 991 014",
+              email: "em47593@ubt-uni.net",
+              gender: "Mashkull",
+              profilePictureUrl:
+                "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+              academicStaffId: "192047593",
+              academicLevels: [
+                {
+                  academicLevelId: 1,
+                  academicLevelName: "G3a - SHKI BSc.",
+                },
+                {
+                  academicLevelId: 2,
+                  academicLevelName: "G3b - SHKI BSc.",
+                },
+              ],
+            },
+          ],
+          semester: {
+            semesterID: 1,
+            semesterName: "Semestri i trete",
+          },
+          specializations: {
+            specializationId: 1,
+            specializationName: "WEB",
+          },
+          courseCategory: "Obligative",
+          },
+        },
+        {
+          classId: 14,
+  startingTime: "17:40",
+  endingTime: "19:10",
+  lectureHall: {
+    lectureHallId: "17",
+    lectureHallName: "A007",
+    capacity: "120",
+    location: "Kati i pare",
+  },
+  course: {
+  courseId: "B14",
+  courseCode: "433",
+  courseName: "LAB 2",
+  ECTS: "7",
+  academicStaff: [
+    {
+      userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+      firstName: "Endrit",
+      lastName: "Makolli",
+      parentName: "Sami Makolli",
+      role: "STUDENT",
+      city: "Prishtine",
+      address: "Azem Jashanica 3",
+      birthday: "13 korrik, 2001",
+      country: "Kosovë",
+      zipCode: "10000",
+      age: "20",
+      personalNumber: "--------",
+      telephone: "+383 44 991 014",
+      email: "em47593@ubt-uni.net",
+      gender: "Mashkull",
+      profilePictureUrl:
+        "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+      academicStaffId: "192047593",
+      academicLevels: [
+        {
+          academicLevelId: 1,
+          academicLevelName: "G3a - SHKI BSc.",
+        },
+        {
+          academicLevelId: 2,
+          academicLevelName: "G3b - SHKI BSc.",
+        },
+      ],
     },
     {
-      groupId: 7,
+      userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+      firstName: "Endrit2",
+      lastName: "Makolli",
+      parentName: "Sami Makolli",
+      role: "STUDENT",
+      city: "Prishtine",
+      address: "Azem Jashanica 3",
+      birthday: "13 korrik, 2001",
+      country: "Kosovë",
+      zipCode: "10000",
+      age: "20",
+      personalNumber: "--------",
+      telephone: "+383 44 991 014",
+      email: "em47593@ubt-uni.net",
+      gender: "Mashkull",
+      profilePictureUrl:
+        "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+      academicStaffId: "192047593",
+      academicLevels: [
+        {
+          academicLevelId: 1,
+          academicLevelName: "G3a - SHKI BSc.",
+        },
+        {
+          academicLevelId: 2,
+          academicLevelName: "G3b - SHKI BSc.",
+        },
+      ],
+    },
+  ],
+  semester: {
+    semesterID: 1,
+    semesterName: "Semestri i trete",
+  },
+  specializations: {
+    specializationId: 1,
+    specializationName: "WEB",
+  },
+  courseCategory: "Obligative",
+  },
+        },
+      ],
+    },
+    {
+      groupId: "7",
       groupName: "G6b - ARK BSc.",
       timeSlot: "Pasdite",
+      classes: [
+        {
+          classId: 14,
+          startingTime: "17:40",
+          endingTime: "19:10",
+          lectureHall: {
+            lectureHallId: "17",
+            lectureHallName: "A007",
+            capacity: "120",
+            location: "Kati i pare",
+          },
+          course: {
+          courseId: "B14",
+          courseCode: "433",
+          courseName: "LAB 2",
+          ECTS: "7",
+          academicStaff: [
+            {
+              userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+              firstName: "Endrit",
+              lastName: "Makolli",
+              parentName: "Sami Makolli",
+              role: "STUDENT",
+              city: "Prishtine",
+              address: "Azem Jashanica 3",
+              birthday: "13 korrik, 2001",
+              country: "Kosovë",
+              zipCode: "10000",
+              age: "20",
+              personalNumber: "--------",
+              telephone: "+383 44 991 014",
+              email: "em47593@ubt-uni.net",
+              gender: "Mashkull",
+              profilePictureUrl:
+                "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+              academicStaffId: "192047593",
+              academicLevels: [
+                {
+                  academicLevelId: 1,
+                  academicLevelName: "G3a - SHKI BSc.",
+                },
+                {
+                  academicLevelId: 2,
+                  academicLevelName: "G3b - SHKI BSc.",
+                },
+              ],
+            },
+            {
+              userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+              firstName: "Endrit2",
+              lastName: "Makolli",
+              parentName: "Sami Makolli",
+              role: "STUDENT",
+              city: "Prishtine",
+              address: "Azem Jashanica 3",
+              birthday: "13 korrik, 2001",
+              country: "Kosovë",
+              zipCode: "10000",
+              age: "20",
+              personalNumber: "--------",
+              telephone: "+383 44 991 014",
+              email: "em47593@ubt-uni.net",
+              gender: "Mashkull",
+              profilePictureUrl:
+                "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+              academicStaffId: "192047593",
+              academicLevels: [
+                {
+                  academicLevelId: 1,
+                  academicLevelName: "G3a - SHKI BSc.",
+                },
+                {
+                  academicLevelId: 2,
+                  academicLevelName: "G3b - SHKI BSc.",
+                },
+              ],
+            },
+          ],
+          semester: {
+            semesterID: 1,
+            semesterName: "Semestri i trete",
+          },
+          specializations: {
+            specializationId: 1,
+            specializationName: "WEB",
+          },
+          courseCategory: "Obligative",
+          },
+        },
+        {
+          classId: 14,
+  startingTime: "17:40",
+  endingTime: "19:10",
+  lectureHall: {
+    lectureHallId: "17",
+    lectureHallName: "A007",
+    capacity: "120",
+    location: "Kati i pare",
+  },
+  course: {
+  courseId: "B14",
+  courseCode: "433",
+  courseName: "LAB 2",
+  ECTS: "7",
+  academicStaff: [
+    {
+      userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+      firstName: "Endrit",
+      lastName: "Makolli",
+      parentName: "Sami Makolli",
+      role: "STUDENT",
+      city: "Prishtine",
+      address: "Azem Jashanica 3",
+      birthday: "13 korrik, 2001",
+      country: "Kosovë",
+      zipCode: "10000",
+      age: "20",
+      personalNumber: "--------",
+      telephone: "+383 44 991 014",
+      email: "em47593@ubt-uni.net",
+      gender: "Mashkull",
+      profilePictureUrl:
+        "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+      academicStaffId: "192047593",
+      academicLevels: [
+        {
+          academicLevelId: 1,
+          academicLevelName: "G3a - SHKI BSc.",
+        },
+        {
+          academicLevelId: 2,
+          academicLevelName: "G3b - SHKI BSc.",
+        },
+      ],
+    },
+    {
+      userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+      firstName: "Endrit2",
+      lastName: "Makolli",
+      parentName: "Sami Makolli",
+      role: "STUDENT",
+      city: "Prishtine",
+      address: "Azem Jashanica 3",
+      birthday: "13 korrik, 2001",
+      country: "Kosovë",
+      zipCode: "10000",
+      age: "20",
+      personalNumber: "--------",
+      telephone: "+383 44 991 014",
+      email: "em47593@ubt-uni.net",
+      gender: "Mashkull",
+      profilePictureUrl:
+        "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+      academicStaffId: "192047593",
+      academicLevels: [
+        {
+          academicLevelId: 1,
+          academicLevelName: "G3a - SHKI BSc.",
+        },
+        {
+          academicLevelId: 2,
+          academicLevelName: "G3b - SHKI BSc.",
+        },
+      ],
+    },
+  ],
+  semester: {
+    semesterID: 1,
+    semesterName: "Semestri i trete",
+  },
+  specializations: {
+    specializationId: 1,
+    specializationName: "WEB",
+  },
+  courseCategory: "Obligative",
+  },
+        },
+      ],
     },
   ],
   specializations: [
@@ -50,6 +412,422 @@ export const fakeStudent: Student = {
     },
   ],
 };
+
+// --------------------------------------------------------------------------------------
+export const fakeClass: Class = {
+  classId: 14,
+  startingTime: "17:40",
+  endingTime: "19:10",
+  lectureHall: {
+    lectureHallId: "17",
+    lectureHallName: "A007",
+    capacity: "120",
+    location: "Kati i pare",
+  },
+  course: {
+  courseId: "B14",
+  courseCode: "433",
+  courseName: "LAB 2",
+  ECTS: "7",
+  academicStaff: [
+    {
+      userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+      firstName: "Endrit",
+      lastName: "Makolli",
+      parentName: "Sami Makolli",
+      role: "STUDENT",
+      city: "Prishtine",
+      address: "Azem Jashanica 3",
+      birthday: "13 korrik, 2001",
+      country: "Kosovë",
+      zipCode: "10000",
+      age: "20",
+      personalNumber: "--------",
+      telephone: "+383 44 991 014",
+      email: "em47593@ubt-uni.net",
+      gender: "Mashkull",
+      profilePictureUrl:
+        "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+      academicStaffId: "192047593",
+      academicLevels: [
+        {
+          academicLevelId: 1,
+          academicLevelName: "G3a - SHKI BSc.",
+        },
+        {
+          academicLevelId: 2,
+          academicLevelName: "G3b - SHKI BSc.",
+        },
+      ],
+    },
+    {
+      userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+      firstName: "Endrit2",
+      lastName: "Makolli",
+      parentName: "Sami Makolli",
+      role: "STUDENT",
+      city: "Prishtine",
+      address: "Azem Jashanica 3",
+      birthday: "13 korrik, 2001",
+      country: "Kosovë",
+      zipCode: "10000",
+      age: "20",
+      personalNumber: "--------",
+      telephone: "+383 44 991 014",
+      email: "em47593@ubt-uni.net",
+      gender: "Mashkull",
+      profilePictureUrl:
+        "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+      academicStaffId: "192047593",
+      academicLevels: [
+        {
+          academicLevelId: 1,
+          academicLevelName: "G3a - SHKI BSc.",
+        },
+        {
+          academicLevelId: 2,
+          academicLevelName: "G3b - SHKI BSc.",
+        },
+      ],
+    },
+  ],
+  semester: {
+    semesterID: 1,
+    semesterName: "Semestri i trete",
+  },
+  specializations: {
+    specializationId: 1,
+    specializationName: "WEB",
+  },
+  courseCategory: "Obligative",
+  },
+};
+export const fakeLectureHall: LectureHall = {
+  lectureHallId: "17",
+  lectureHallName: "A007",
+  capacity: "120",
+  location: "Kati i pare",
+};
+
+
+// -----------------
+export const fakeCourse: Course = {
+  courseId: "B14",
+  courseCode: "433",
+  courseName: "LAB 2",
+  ECTS: "7",
+  academicStaff: [
+    {
+      userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+      firstName: "Endrit",
+      lastName: "Makolli",
+      parentName: "Sami Makolli",
+      role: "STUDENT",
+      city: "Prishtine",
+      address: "Azem Jashanica 3",
+      birthday: "13 korrik, 2001",
+      country: "Kosovë",
+      zipCode: "10000",
+      age: "20",
+      personalNumber: "--------",
+      telephone: "+383 44 991 014",
+      email: "em47593@ubt-uni.net",
+      gender: "Mashkull",
+      profilePictureUrl:
+        "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+      academicStaffId: "192047593",
+      academicLevels: [
+        {
+          academicLevelId: 1,
+          academicLevelName: "G3a - SHKI BSc.",
+        },
+        {
+          academicLevelId: 2,
+          academicLevelName: "G3b - SHKI BSc.",
+        },
+      ],
+    },
+    {
+      userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+      firstName: "Endrit2",
+      lastName: "Makolli",
+      parentName: "Sami Makolli",
+      role: "STUDENT",
+      city: "Prishtine",
+      address: "Azem Jashanica 3",
+      birthday: "13 korrik, 2001",
+      country: "Kosovë",
+      zipCode: "10000",
+      age: "20",
+      personalNumber: "--------",
+      telephone: "+383 44 991 014",
+      email: "em47593@ubt-uni.net",
+      gender: "Mashkull",
+      profilePictureUrl:
+        "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+      academicStaffId: "192047593",
+      academicLevels: [
+        {
+          academicLevelId: 1,
+          academicLevelName: "G3a - SHKI BSc.",
+        },
+        {
+          academicLevelId: 2,
+          academicLevelName: "G3b - SHKI BSc.",
+        },
+      ],
+    },
+  ],
+  semester: {
+    semesterID: 1,
+    semesterName: "Semestri i trete",
+  },
+  specializations: {
+    specializationId: 1,
+    specializationName: "WEB",
+  },
+  courseCategory: "Obligative",
+};
+
+export const fakeGroup: Group = {
+    groupId: "1",
+    groupName: "G3a - SHKI BSc.",
+    timeSlot: "Pasdite",
+    classes: [
+      {
+        classId: 14,
+        startingTime: "19:20",
+        endingTime: "20:50",
+        lectureHall: {
+          lectureHallId: "17",
+          lectureHallName: "A002",
+          capacity: "120",
+          location: "Kati i pare",
+        },
+        course: {
+        courseId: "B14",
+        courseCode: "433",
+        courseName: "Arkitektura Softuerike",
+        ECTS: "5",
+        academicStaff: [
+          {
+            userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+            firstName: "Endrit",
+            lastName: "Makolli",
+            parentName: "Sami Makolli",
+            role: "STUDENT",
+            city: "Prishtine",
+            address: "Azem Jashanica 3",
+            birthday: "13 korrik, 2001",
+            country: "Kosovë",
+            zipCode: "10000",
+            age: "20",
+            personalNumber: "--------",
+            telephone: "+383 44 991 014",
+            email: "em47593@ubt-uni.net",
+            gender: "Mashkull",
+            profilePictureUrl:
+              "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+            academicStaffId: "192047593",
+            academicLevels: [
+              {
+                academicLevelId: 1,
+                academicLevelName: "G3a - SHKI BSc.",
+              },
+              {
+                academicLevelId: 2,
+                academicLevelName: "G3b - SHKI BSc.",
+              },
+            ],
+          },
+          {
+            userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+            firstName: "Endrit2",
+            lastName: "Makolli",
+            parentName: "Sami Makolli",
+            role: "STUDENT",
+            city: "Prishtine",
+            address: "Azem Jashanica 3",
+            birthday: "13 korrik, 2001",
+            country: "Kosovë",
+            zipCode: "10000",
+            age: "20",
+            personalNumber: "--------",
+            telephone: "+383 44 991 014",
+            email: "em47593@ubt-uni.net",
+            gender: "Mashkull",
+            profilePictureUrl:
+              "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+            academicStaffId: "192047593",
+            academicLevels: [
+              {
+                academicLevelId: 1,
+                academicLevelName: "G3a - SHKI BSc.",
+              },
+              {
+                academicLevelId: 2,
+                academicLevelName: "G3b - SHKI BSc.",
+              },
+            ],
+          },
+        ],
+        semester: {
+          semesterID: 1,
+          semesterName: "Semestri i trete",
+        },
+        specializations: {
+          specializationId: 1,
+          specializationName: "WEB",
+        },
+        courseCategory: "Obligative",
+        },
+      },
+      {
+        classId: 14,
+        startingTime: "17:40",
+        endingTime: "19:10",
+        lectureHall: {
+          lectureHallId: "17",
+          lectureHallName: "A007",
+          capacity: "120",
+          location: "Kati i pare",
+        },
+        course: {
+        courseId: "B14",
+        courseCode: "433",
+        courseName: "LAB 2",
+        ECTS: "7",
+        academicStaff: [
+          {
+            userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+            firstName: "Endrit",
+            lastName: "Makolli",
+            parentName: "Sami Makolli",
+            role: "STUDENT",
+            city: "Prishtine",
+            address: "Azem Jashanica 3",
+            birthday: "13 korrik, 2001",
+            country: "Kosovë",
+            zipCode: "10000",
+            age: "20",
+            personalNumber: "--------",
+            telephone: "+383 44 991 014",
+            email: "em47593@ubt-uni.net",
+            gender: "Mashkull",
+            profilePictureUrl:
+              "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+            academicStaffId: "192047593",
+            academicLevels: [
+              {
+                academicLevelId: 1,
+                academicLevelName: "G3a - SHKI BSc.",
+              },
+              {
+                academicLevelId: 2,
+                academicLevelName: "G3b - SHKI BSc.",
+              },
+            ],
+          },
+          {
+            userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+            firstName: "Endrit2",
+            lastName: "Makolli",
+            parentName: "Sami Makolli",
+            role: "STUDENT",
+            city: "Prishtine",
+            address: "Azem Jashanica 3",
+            birthday: "13 korrik, 2001",
+            country: "Kosovë",
+            zipCode: "10000",
+            age: "20",
+            personalNumber: "--------",
+            telephone: "+383 44 991 014",
+            email: "em47593@ubt-uni.net",
+            gender: "Mashkull",
+            profilePictureUrl:
+              "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+            academicStaffId: "192047593",
+            academicLevels: [
+              {
+                academicLevelId: 1,
+                academicLevelName: "G3a - SHKI BSc.",
+              },
+              {
+                academicLevelId: 2,
+                academicLevelName: "G3b - SHKI BSc.",
+              },
+            ],
+          },
+        ],
+        semester: {
+          semesterID: 1,
+          semesterName: "Semestri i trete",
+        },
+        specializations: {
+          specializationId: 1,
+          specializationName: "WEB",
+        },
+        courseCategory: "Obligative",
+        },
+      },
+    ],
+}
+
+export const fakeAdministriveStaff: AdministriveStaff = {
+  userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+  firstName: "Doruntina",
+  lastName: "Korca",
+  parentName: "x",
+  role: "STUDENT",
+  city: "x",
+  address: "x",
+  birthday: "x",
+  country: "Kosovë",
+  zipCode: "30000",
+  age: "23",
+  personalNumber: "x",
+  telephone: "+383 44 444 444",
+  email: "db1234@ubt-uni.net",
+  gender: "Femer",
+  profilePictureUrl:
+    "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+    administriveStaffId: "192047139",
+  
+};
+
+// --------------------------------
+
+export const fakeAcademicStaff: AcademicStaff = {
+  userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",
+  firstName: "Endrit",
+  lastName: "Makolli",
+  parentName: "Sami Makolli",
+  role: "STUDENT",
+  city: "Prishtine",
+  address: "Azem Jashanica 3",
+  birthday: "13 korrik, 2001",
+  country: "Kosovë",
+  zipCode: "10000",
+  age: "20",
+  personalNumber: "--------",
+  telephone: "+383 44 991 014",
+  email: "em47593@ubt-uni.net",
+  gender: "Mashkull",
+  profilePictureUrl:
+    "https://www.outbackballooning.com.au/wp-content/uploads/2019/01/2.jpg",
+  academicStaffId: "192047593",
+  academicLevels: [
+    {
+      academicLevelId: 1,
+      academicLevelName: "G3a - SHKI BSc.",
+    },
+    {
+      academicLevelId: 2,
+      academicLevelName: "G3b - SHKI BSc.",
+    },
+  ],
+};
+// --------------------------------
 
 export const fakeAdmin: User = {
   userId: "fbfc92f7-0c3c-42dc-96fc-c6bdf4e98933",

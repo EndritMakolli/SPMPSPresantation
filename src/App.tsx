@@ -22,6 +22,11 @@ import { ManageSystem } from "./Interfaces/ManageSystem";
 import BusSchedule from "./Interfaces/BusSchedules/BusSchedule";
 import "./Style/Columns.css";
 import ManageStudents from "./Interfaces/ManageSystem/Students/ManageStudents";
+import ManageAcademicStaffs from "./Interfaces/ManageSystem/AcademicStaffs/ManageAcademicStaffs";
+import ManageAdministriveStaffs from "./Interfaces/ManageSystem/AdministratorStaffs/ManageAdministriveStaffs";
+import ManageCourses from "./Interfaces/ManageSystem/Courses/ManageCourses";
+import ManageLectureHalls from "./Interfaces/ManageSystem/LectureHalls/ManageLectureHalls";
+import ManageGroups from "./Interfaces/ManageSystem/Groups/ManageGroups";
 
 export default observer(function App() {
   const { loggedIn, role, faculty } = useStore().userStore;
@@ -46,6 +51,11 @@ export default observer(function App() {
             <Route path="posts" element={<Posts />} />
             <Route path="profile/buses" element={<BusSchedule />} />
             <Route path="admin/students" element={<ManageStudents />} />
+            <Route path="admin/lecturers" element={<ManageAcademicStaffs />} />
+            <Route path="admin/administrators" element={<ManageAdministriveStaffs />} />
+            <Route path="admin/subjects" element={<ManageCourses/>} />
+            <Route path="admin/lecturegroups" element={<ManageGroups/>} />
+            <Route path="admin/lecturehalls" element={<ManageLectureHalls/>} />
           </Routes>
         </main>
       )}
