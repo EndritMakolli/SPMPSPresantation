@@ -5,20 +5,18 @@ import "../Style/Settings.css";
 import ChooseFaculty from "./ChooseFaculty";
 
 export const Settings = () => {
-  const { faculty, logOut, setFaculty } = useStore().userStore;
+  const { currentFaculty, logOut, deselectFaculty } = useStore().userStore;
   return (
     <>
-      {!faculty && <ChooseFaculty />}
-      {faculty && (
+      {!currentFaculty && <ChooseFaculty />}
+      {currentFaculty && (
         <>
           <h1>Settings</h1>
           <section className="contents" id="settings">
             <div className="form-item">
               <AccountBalanceOutlinedIcon fontSize="large" />
               <Link to="po">
-                <button onClick={() => setFaculty(undefined)}>
-                  Rizgjedh fakultetin
-                </button>
+                <button onClick={deselectFaculty}>Rizgjedh fakultetin</button>
               </Link>
             </div>
             <div className="form-item">

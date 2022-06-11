@@ -24,14 +24,14 @@ import "./Style/Columns.css";
 import ManageStudents from "./Interfaces/ManageSystem/Students/ManageStudents";
 
 export default observer(function App() {
-  const { loggedIn, role, faculty } = useStore().userStore;
+  const { loggedIn, role, currentFaculty } = useStore().userStore;
 
   return (
     <div className="App">
       {!loggedIn && <LoginPage />}
-      {loggedIn && !faculty && <ChooseFaculty />}
-      {loggedIn && faculty && <Header role={role!} />}
-      {loggedIn && faculty && (
+      {loggedIn && !currentFaculty && <ChooseFaculty />}
+      {loggedIn && currentFaculty && <Header role={role!} />}
+      {loggedIn && currentFaculty && (
         <main>
           <Routes>
             <Route path="profile/personal" element={<PersonalProfile />} />

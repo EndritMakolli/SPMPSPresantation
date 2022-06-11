@@ -1,15 +1,18 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../Agent";
-import { fakeAdmin, fakeStudent, fakeFaculty } from "../FakeData";
+import { fakeAdmin } from "../FakeData";
 import { Faculty } from "../Types/Faculty";
+import { Student } from "../Types/Student";
 import { User } from "../Types/User";
 
 export default class UserStore {
-  loggedIn: boolean = true;
+  loggedIn: boolean = false;
   role: string | undefined;
-  faculty: Faculty | undefined = fakeFaculty;
-  user: User | undefined = fakeAdmin;
-  userFaculties: Faculty[] | undefined = undefined;
+  currentFaculty: Faculty | undefined = undefined;
+  user: User | undefined = undefined;
+  student: Student | undefined = undefined;
+  registeredFaculties: Faculty[] | undefined = undefined;
+  loading: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -19,72 +22,133 @@ export default class UserStore {
   }
 
   cookieLogin = async () => {
-    // await agent.Authentication.CookieLogin()
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       runInAction(() => {
-    //         let user = fakeAdmin;
-    //         this.user = user;
-    //         this.role = this.user?.role;
-    //         this.loggedIn = true;
-    //       });
-    //     } else console.log("Bad Request!!!!");
-    //   })
-    //   .catch(() => console.log("Cookie login error!"));
-    setTimeout(() => {
-      runInAction(() => {
-        this.user = fakeAdmin;
-        this.role = this.user?.role;
-        this.loggedIn = true;
-      });
-    }, 1000);
+    this.nowLoading();
+    try {
+      const { data: userId, status: authStatus } =
+        await agent.Authentication.GetUserId();
+
+      if (authStatus === 200) {
+        await this.loadUser(userId);
+        this.stoppedLoading();
+      } else if (authStatus === 401) {
+        alert("Cookie not yet set");
+      }
+    } catch (err) {
+      console.log(err);
+      this.stoppedLoading();
+    }
+  };
+
+  loadUser = async (userId: string) => {
+    try {
+      const { data, status } = await agent.Users.GetUserById(userId);
+
+      if (status === 200) {
+        runInAction(() => {
+          this.user = data;
+          //this.user = fakeAdmin;
+          this.role = data.role;
+          //this.role = "ADMIN";
+
+          this.loggedIn = true;
+        });
+      } else if (status === 404) {
+        console.log("User could not be queried");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  nowLoading = () => {
+    this.loading = true;
+  };
+
+  stoppedLoading = () => {
+    this.loading = false;
+  };
+
+  getFacultyFromLocalStorage = () => {
+    let facultyId = localStorage.getItem("currentFaculty");
+    if (facultyId === null) console.log("Faculty not set in storage");
+    else return parseInt(facultyId);
   };
 
   setFacultyFromSession = async () => {
-    let facultyIdString = localStorage.getItem("selectedFaculty");
-    //console.log("facultyFromSession : " + facultyIdString);
-    if (!facultyIdString) return;
-    let faculty = await agent.Faculties.GetFacultyById(
-      parseInt(facultyIdString)
-    );
-    faculty
-      ? runInAction(() => (this.faculty = faculty.data))
-      : console.log("Faculty assign failed");
+    this.nowLoading();
+    try {
+      let facultyId = this.getFacultyFromLocalStorage();
+
+      if (facultyId) {
+        const { data, status } = await agent.Faculties.GetFacultyById(
+          facultyId
+        );
+
+        if (status === 200) {
+          runInAction(() => {
+            this.currentFaculty = data;
+          });
+          this.stoppedLoading();
+        } else if (status === 404) {
+          console.log("Queried faculty wasn't found");
+        }
+      } else console.log("Faculty not set, cannot query!");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  setFaculty = (faculty: Faculty | undefined) => {
+  setPickedFaculty = (faculty: Faculty) => {
     runInAction(() => {
-      this.faculty = faculty;
+      this.currentFaculty = faculty;
     });
-    if (faculty)
-      localStorage.setItem("selectedFaculty", faculty.facultyID.toString());
+    localStorage.setItem("currentFaculty", faculty.facultyID.toString());
   };
 
-  getFacultiesForUser = () => {
-    //console.log("Current user : " + this.user?.userId);
-    if (!this.user?.userId) return;
-    if (this.user?.userId && this.faculty) return;
-    //console.log("Inside method for faculties...");
-    agent.Faculties.GetFacultiesForUser(this.user!.userId)
-      .then((res) => {
-        runInAction(() => (this.userFaculties = res.data));
-      })
-      .catch((err) => console.log("Error at faculty fetching!" + err));
+  deselectFaculty = () => {
+    this.currentFaculty = undefined;
+  };
+
+  getFacultiesForUser = async () => {
+    //@ts-ignore
+    if (!this.user?.id) return; //Checks whether the user is not set
+    //@ts-ignore
+    if (this.user?.id && this.currentFaculty) return; //Checks whether both the user and faculty are picked
+
+    this.nowLoading();
+    try {
+      const { data, status } = await agent.Faculties.GetFacultiesForUser(
+        //@ts-ignore
+        this.user.id
+      );
+      if (status === 200) {
+        runInAction(() => {
+          this.registeredFaculties = data;
+        });
+        this.stoppedLoading();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   logIn = async (user: {}) => {
-    await agent.Authentication.GenerateToken(user)
-      .then(() => this.cookieLogin())
+    let success = await agent.Authentication.GenerateToken(user)
+      .then((res) => res.status === 200)
       .catch(() => alert("Something went wrong!"));
+
+    if (success) {
+      await this.cookieLogin();
+    }
   };
 
   clearSession = () => {
     this.loggedIn = false;
     this.role = "NONE";
     this.user = {} as User;
-    this.faculty = undefined;
-    this.userFaculties = undefined;
-    localStorage.removeItem("selectedFaculty");
+    this.currentFaculty = undefined;
+    this.registeredFaculties = undefined;
+    localStorage.removeItem("currentFaculty");
   };
 
   logOut = async () => {

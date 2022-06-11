@@ -7,9 +7,17 @@ axios.defaults.withCredentials = true;
 const urls = {
   auth: "http://localhost:5000/",
   fcm: "http://localhost:7000/",
+  usr: "http://localhost:9000/",
 };
 
-const responseBody = <T>(response: AxiosResponse<T>) => response;
+type Response<T> = {
+  data: T;
+  status: number;
+};
+
+const responseBody = <T>(response: AxiosResponse<T>): Response<T> => {
+  return { data: response.data, status: response.status };
+};
 
 const requests = {
   get: <T>(url: string, config?: AxiosRequestConfig) =>
@@ -23,8 +31,8 @@ const Authentication = {
   GenerateToken: async (credentials: {}) =>
     requests.post(urls.auth + "api/auth/login", credentials),
   LogOut: () => requests.post(urls.auth + "api/auth/logout", {}),
-  CookieLogin: async () =>
-    requests.get<User>(urls.auth + "api/auth/demoGetUser"),
+  GetUserId: async () =>
+    requests.get<string>(urls.auth + "api/auth/getIdClaim"),
 };
 
 const Faculties = {
@@ -36,9 +44,15 @@ const Faculties = {
     ),
 };
 
+const Users = {
+  GetUserById: async (userId: string) =>
+    requests.get<User>(urls.usr + "api/Users/" + userId),
+};
+
 const agent = {
   Authentication: Authentication,
   Faculties: Faculties,
+  Users: Users,
 };
 
 export default agent;
