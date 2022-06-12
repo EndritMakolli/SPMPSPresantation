@@ -23,7 +23,7 @@ export const BusScheduleHeading = ({
     currentSchedule,
     isInScheduleCreateMode,
     selectSchedule,
-    getSchedules,
+    getAssignedLocations,
   } = useStore().busScheduleStore;
   return (
     <>
@@ -32,12 +32,12 @@ export const BusScheduleHeading = ({
           <div className="col-4 aligned-text">
             <span className="font-large">Zgjedh lokacionin : </span>
             <select
-              onChange={(e) => selectSchedule(parseInt(e.target.value))}
+              onChange={(e) => selectSchedule(e.target.value)}
               name="location-pick"
-              className="col-4 border-dark-md"
-              defaultValue={currentSchedule?.locationId}
+              className="col-5 border-dark-md"
+              defaultValue={currentSchedule?.busScheduleID}
             >
-              {getSchedules().map((opt) => {
+              {getAssignedLocations().map((opt) => {
                 return (
                   <option key={opt.locationId} value={opt.locationId}>
                     {opt.locationName}

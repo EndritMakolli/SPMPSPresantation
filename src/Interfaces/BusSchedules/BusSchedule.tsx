@@ -14,21 +14,29 @@ export default observer(function BusSchedule() {
     currentSchedule,
     mode,
     deleteSchedule,
-    updateSlot,
+    isInSlotEditingMode,
     currentSlot,
-    setScheduleCreateMode,
-    setSlotCreateMode,
+    previousSchedule,
+    setCurrentSlot,
+    selectSlot,
+    setCurrentSchedule,
+    setMode,
     isLoading,
-    saveChangesToSlot,
-    setSlotEditMode,
-    setReadMode,
+    setPreviousSchedule,
+    setCurrentLocation,
+    setDefaultSchedule,
+    deselectSlot,
+    setDefaultSlot,
+    createSlot,
+    editSlot,
     deleteSlot,
     getUnassignedLocations,
     updateSchedule,
-    setScheduleEditingMode,
     hasSchedules,
     createSchedule,
-    getLocationsFromSchedules,
+    getAssignedLocations,
+    updateScheduleInformation,
+    currentLocation,
     isInSlotCreateMode,
   } = useStore().busScheduleStore;
 
@@ -37,7 +45,7 @@ export default observer(function BusSchedule() {
   const slotInputChangeHandler = (
     e: React.SyntheticEvent<HTMLInputElement>
   ) => {
-    updateSlot({
+    setCurrentSlot({
       ...currentSlot!,
       [e.currentTarget.name]: e.currentTarget.value,
     });
@@ -54,23 +62,33 @@ export default observer(function BusSchedule() {
 
   const handleCreateSchedule = () => {
     if (getUnassignedLocations().length === 0) alert("Ska mo lokacione");
-    else setScheduleCreateMode();
+    else {
+      setMode(BusScheduleViewModes.CREATE_SCHEDULE);
+      setCurrentLocation(getUnassignedLocations()[0]);
+      setPreviousSchedule(currentSchedule);
+      setDefaultSchedule(getUnassignedLocations()[0].locationId);
+    }
   };
 
   /**
    * Handles clicking the edit button on a slot.
    */
 
-  const editSlotHandler = (slotId: number) => {
-    setSlotEditMode(slotId);
+  const editSlotHandler = (slotId: string) => {
+    setMode(BusScheduleViewModes.EDIT_SLOT);
+    selectSlot(slotId);
   };
 
   /**
-   * Handles clikcing the save icon after editing a slot.
+   * Handles clicking the save icon after editing a slot.
    */
 
   const saveEditedSlotHandler = () => {
-    saveChangesToSlot();
+    editSlot();
+  };
+
+  const createSlotHandler = () => {
+    createSlot();
   };
 
   /**
@@ -78,7 +96,8 @@ export default observer(function BusSchedule() {
    */
 
   const editScheduleHandler = () => {
-    setScheduleEditingMode();
+    setPreviousSchedule(currentSchedule);
+    setMode(BusScheduleViewModes.EDIT_SCHEDULE);
   };
 
   /**
@@ -86,7 +105,8 @@ export default observer(function BusSchedule() {
    */
 
   const handleSlotCreate = () => {
-    setSlotCreateMode();
+    setMode(BusScheduleViewModes.CREATE_SLOT);
+    setDefaultSlot();
   };
 
   /**
@@ -95,19 +115,18 @@ export default observer(function BusSchedule() {
    * @param name  - the name of the picked location for the schedule
    */
 
-  const handleCreateScheduleOptionChange = (id: number, name: string) => {
-    updateSchedule({ ...currentSchedule!, locationId: id, locationName: name });
+  const handleCreateScheduleOptionChange = (id: string, name: string) => {
+    updateSchedule({ ...currentSchedule!, busScheduleID: id });
   };
 
   /**
    * Cancels all changes to the current bus schedule being edited.
-   * Must be passed the unchanged schedule object, to replace the mutated one.
-   * @param sch the old BusSchedule object before being modified
+   * Sets the previous schedule as the current one again.
    */
 
-  const handleCancelScheduleEditing = (sch: BusSchedule) => {
-    updateSchedule(sch);
-    setReadMode();
+  const handleCancelScheduleEditing = () => {
+    setCurrentSchedule(previousSchedule!);
+    setMode(BusScheduleViewModes.READ);
   };
 
   /**
@@ -118,12 +137,10 @@ export default observer(function BusSchedule() {
    * @param slotId - optional, the ID of the slot to be deleted.
    */
 
-  const deleteSlotClickHandler = (slotId?: number) => {
-    if (
-      mode === BusScheduleViewModes.CREATE_SLOT ||
-      mode === BusScheduleViewModes.EDIT_SLOT
-    ) {
-      setReadMode();
+  const deleteSlotClickHandler = (slotId?: string) => {
+    if (isInSlotCreateMode() || isInSlotEditingMode()) {
+      setMode(BusScheduleViewModes.READ);
+      deselectSlot();
     } else if (slotId) deleteSlot(slotId);
   };
 
@@ -133,7 +150,7 @@ export default observer(function BusSchedule() {
 
   const editSaveChangesHandler = () => {
     //Because of onChange, nothing else must be done; must add Axios call after backend connection
-    setReadMode();
+    updateScheduleInformation();
   };
 
   /**
@@ -176,6 +193,7 @@ export default observer(function BusSchedule() {
             {formIsOpen() && (
               <BusScheduleForm
                 schedule={currentSchedule!}
+                location={currentLocation!}
                 mode={
                   mode === BusScheduleViewModes.CREATE_SCHEDULE
                     ? mode
@@ -186,7 +204,7 @@ export default observer(function BusSchedule() {
                 onCreateClick={createSchedule}
                 onUpdateClick={editSaveChangesHandler}
                 unassignedLocations={getUnassignedLocations()}
-                assignedLocations={getLocationsFromSchedules()}
+                assignedLocations={getAssignedLocations()}
                 onInputChange={handleScheduleInputChange}
               />
             )}
@@ -197,6 +215,7 @@ export default observer(function BusSchedule() {
                 slots={currentSchedule?.slots!}
                 currentSlot={currentSlot}
                 onSlotCreateClick={handleSlotCreate}
+                onSlotCreation={createSlotHandler}
                 onSlotEditCancel={deleteSlotClickHandler}
                 onSlotEditClick={editSlotHandler}
                 onSlotEditSave={saveEditedSlotHandler}

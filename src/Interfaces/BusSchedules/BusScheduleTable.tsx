@@ -10,10 +10,11 @@ interface Props {
   currentSlot: BusScheduleSlot | undefined;
   mode: BusScheduleViewModes;
   adminMode: boolean;
-  onSlotEditClick: (slotId: number) => void;
+  onSlotEditClick: (slotId: string) => void;
   onSlotCreateClick: () => void;
-  onSlotEditCancel: (slotId?: number) => void;
+  onSlotEditCancel: (slotId?: string) => void;
   onSlotEditSave: () => void;
+  onSlotCreation: () => void;
   onSlotInputChange: (e: React.SyntheticEvent<HTMLInputElement>) => void;
 }
 
@@ -24,10 +25,19 @@ export const BusScheduleTable = ({
   onSlotEditCancel,
   onSlotEditSave,
   currentSlot,
+  onSlotCreation,
   onSlotInputChange,
   adminMode,
   onSlotEditClick,
 }: Props) => {
+  const closeButtonCanShow = (slotId: string): boolean => {
+    return (
+      (currentSlot === undefined &&
+        mode !== BusScheduleViewModes.CREATE_SLOT) ||
+      currentSlot?.slotId === slotId
+    );
+  };
+
   return (
     <>
       <table className="table-fixed">
@@ -48,25 +58,25 @@ export const BusScheduleTable = ({
                       <td>
                         <input
                           type="time"
-                          name="departTime"
-                          defaultValue={slot.departTime}
+                          name="departTimeFromPlace"
+                          defaultValue={slot.departTimeFromPlace}
                           onChange={onSlotInputChange}
                         />
                       </td>
                       <td>
                         <input
                           type="time"
-                          name="arrivalTime"
+                          name="departTimeFromFaculty"
                           onChange={onSlotInputChange}
-                          defaultValue={slot.arrivalTime}
+                          defaultValue={slot.departTimeFromFaculty}
                         />
                       </td>
                     </>
                   )}
                 {currentSlot?.slotId !== slot.slotId && (
                   <>
-                    <td>{slot.departTime}</td>
-                    <td>{slot.arrivalTime}</td>
+                    <td>{slot.departTimeFromPlace}</td>
+                    <td>{slot.departTimeFromFaculty}</td>
                   </>
                 )}
                 {adminMode && (
@@ -76,7 +86,7 @@ export const BusScheduleTable = ({
                         <EditIcon fontSize="large" />
                       </span>
                     )}
-                    {(!currentSlot || currentSlot?.slotId === slot.slotId) && (
+                    {closeButtonCanShow(slot.slotId) && (
                       <span onClick={() => onSlotEditCancel(slot.slotId)}>
                         <CloseIcon fontSize="large" />
                       </span>
@@ -97,14 +107,14 @@ export const BusScheduleTable = ({
               <td>
                 <input
                   type="time"
-                  name="departTime"
+                  name="departTimeFromPlace"
                   onChange={onSlotInputChange}
                 />
               </td>
               <td>
                 <input
                   type="time"
-                  name="arrivalTime"
+                  name="departTimeFromFaculty"
                   onChange={onSlotInputChange}
                 />
               </td>
@@ -113,7 +123,7 @@ export const BusScheduleTable = ({
                   <CloseIcon fontSize="large" />
                 </span>
 
-                <span onClick={onSlotEditSave}>
+                <span onClick={onSlotCreation}>
                   <SaveIcon fontSize="large" />
                 </span>
               </td>

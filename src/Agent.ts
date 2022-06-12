@@ -1,5 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { BusSchedule } from "./Types/BusSchedule";
 import { Faculty } from "./Types/Faculty";
+import { Location } from "./Types/Location";
 import { User } from "./Types/User";
 
 axios.defaults.withCredentials = true;
@@ -42,6 +44,36 @@ const Faculties = {
     requests.get<Faculty[]>(
       urls.fcm + "api/faculties/GetFacultiesForUser/" + userId
     ),
+  BusSchedules: {
+    GetAllSchedules: async () =>
+      requests.get<BusSchedule[]>(urls.fcm + "api/busschedules"),
+    UpdateScheduleInformation: async (
+      scheduleId: string,
+      schedule: BusSchedule
+    ) =>
+      requests.put(
+        urls.fcm + "api/busschedules/updateInformation/" + scheduleId,
+        schedule
+      ),
+    UpdateScheduleSlots: async (scheduleId: string, schedule: BusSchedule) =>
+      requests.put(
+        urls.fcm + "api/busschedules/updateSlots/" + scheduleId,
+        schedule
+      ),
+    CreateBusSchedule: async (busSchedule: BusSchedule) =>
+      requests.post(
+        urls.fcm + "api/busschedules/" + busSchedule.busScheduleID,
+        busSchedule
+      ),
+    DeleteSchedule: async (scheduleId: string) =>
+      requests.delete(urls.fcm + "api/busschedules/" + scheduleId),
+  },
+  Locations: {
+    GetAllLocations: async () =>
+      requests.get<Location[]>(urls.fcm + "api/locations"),
+    UpdateLocation: async (location: Location) =>
+      requests.put(urls.fcm + "api/locations/" + location.locationId, location),
+  },
 };
 
 const Users = {

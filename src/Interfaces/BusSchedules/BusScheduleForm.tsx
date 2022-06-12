@@ -4,10 +4,11 @@ import { Location } from "../../Types/Location";
 
 interface Props {
   schedule: BusSchedule;
+  location: Location;
   mode:
     | BusScheduleViewModes.EDIT_SCHEDULE
     | BusScheduleViewModes.CREATE_SCHEDULE;
-  onSelectChange: (id: number, name: string) => void;
+  onSelectChange: (id: string, name: string) => void;
   unassignedLocations: Location[];
   assignedLocations: Location[];
   onInputChange: (e: React.SyntheticEvent<HTMLInputElement>) => void;
@@ -33,19 +34,22 @@ export const BusScheduleForm = ({
       : unassignedLocations;
 
   return (
-    <div className="column col-6 off-3 align-center justify-between pad-sm">
-      <div className="row">
+    <form
+      onSubmit={(e) => e.preventDefault()}
+      className="col-6 off-3 column justify-around align-center margined-insides"
+    >
+      <div className="row justify-between">
         <span className="font-large">Zgjedh lokacionin :</span>
         <select
           onChange={(e) =>
             onSelectChange(
-              parseInt(e.target.value),
+              e.target.value,
               e.target.options[e.target.options.selectedIndex].id
             )
           }
           name="location-pick"
           className="col-3 border-dark-md"
-          defaultValue={schedule.locationId}
+          defaultValue={schedule.busScheduleID}
           disabled={mode === BusScheduleViewModes.EDIT_SCHEDULE}
         >
           {locations.map((opt) => {
@@ -61,19 +65,21 @@ export const BusScheduleForm = ({
           })}
         </select>
       </div>
-      <div className="row">
-        <span className="font-large">Ku do të niset autobusi? :</span>
+      <div className="row justify-between">
+        <span className="font-medium">Ku do të niset autobusi? :</span>
         <input
           type="text"
           name="departingPlace"
+          className="col-5"
           onChange={onInputChange}
           defaultValue={schedule.departingPlace}
         />
       </div>
       <div className="row">
-        <span className="font-large">Google Maps URL i lokacionit :</span>
+        <span className="font-medium">Google Maps URL i lokacionit :</span>
         <input
           type="text"
+          className="col-5"
           name="departingPlaceURL"
           onChange={onInputChange}
           defaultValue={schedule.departingPlaceURL}
@@ -93,6 +99,6 @@ export const BusScheduleForm = ({
           ANULO
         </button>
       </div>
-    </div>
+    </form>
   );
 };

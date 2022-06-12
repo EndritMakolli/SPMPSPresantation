@@ -78,70 +78,70 @@ export const fakeFaculty: Faculty = {
   facultyName: "Shkenca Kompjuterike dhe Inxhinieri - Bachelors",
 };
 
-export const FakeSchedules: BusSchedule[] = [
-  {
-    locationId: 1,
-    locationName: "Prishtinë",
-    departingPlace: "Rrethi me Flamur",
-    departingPlaceURL: "sdfdsfs",
-    slots: [
-      {
-        slotId: 1,
-        departTime: "09:00",
-        arrivalTime: "09:30",
-      },
-      {
-        slotId: 2,
-        departTime: "12:30",
-        arrivalTime: "13:00",
-      },
-      {
-        slotId: 3,
-        departTime: "15:10",
-        arrivalTime: "15:40",
-      },
-    ],
-  },
-  {
-    locationId: 2,
-    locationName: "Gjilan",
-    departingPlace: "Komuna e Gjilanit",
-    departingPlaceURL: "sdfdsfs",
-    slots: [
-      {
-        slotId: 1,
-        departTime: "08:00",
-        arrivalTime: "08:30",
-      },
-      {
-        slotId: 2,
-        departTime: "11:30",
-        arrivalTime: "12:00",
-      },
-      {
-        slotId: 3,
-        departTime: "14:10",
-        arrivalTime: "14:40",
-      },
-    ],
-  },
-];
+// export const FakeSchedules: BusSchedule[] = [
+//   {
+//     busScheduleId: 1,
+//     locationName: "Prishtinë",
+//     departingPlace: "Rrethi me Flamur",
+//     departingPlaceURL: "sdfdsfs",
+//     slots: [
+//       {
+//         slotId: "1",
+//         departTime: "09:00",
+//         arrivalTime: "09:30",
+//       },
+//       {
+//         slotId: "2",
+//         departTime: "12:30",
+//         arrivalTime: "13:00",
+//       },
+//       {
+//         slotId: "3",
+//         departTime: "15:10",
+//         arrivalTime: "15:40",
+//       },
+//     ],
+//   },
+//   {
+//     locationId: 2,
+//     locationName: "Gjilan",
+//     departingPlace: "Komuna e Gjilanit",
+//     departingPlaceURL: "sdfdsfs",
+//     slots: [
+//       {
+//         slotId: "1",
+//         departTime: "08:00",
+//         arrivalTime: "08:30",
+//       },
+//       {
+//         slotId: "2",
+//         departTime: "11:30",
+//         arrivalTime: "12:00",
+//       },
+//       {
+//         slotId: "3",
+//         departTime: "14:10",
+//         arrivalTime: "14:40",
+//       },
+//     ],
+//   },
+// ];
 
-export const fakeLocations: Location[] = [
-  {
-    locationId: 1,
-    locationName: "Prishtinë",
-  },
-  {
-    locationId: 2,
-    locationName: "Gjilan",
-  },
-  {
-    locationId: 3,
-    locationName: "Gjakovë",
-  },
-  {
-    locationId: 4,
-    locationName: "Istog",
-  },
-];
+// export const fakeLocations: Location[] = [
+//   {
+//     locationId: 1,
+//     locationName: "Prishtinë",
+//   },
+//   {
+//     locationId: 2,
+//     locationName: "Gjilan",
+//   },
+//   {
+//     locationId: 3,
+//     locationName: "Gjakovë",
+//   },
+//   {
+//     locationId: 4,
+//     locationName: "Istog",
+//   },
+// ];

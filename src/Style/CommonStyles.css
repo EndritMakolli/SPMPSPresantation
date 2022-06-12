@@ -180,6 +180,14 @@ a {
   justify-content: center;
 }
 
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
 .align-center {
   align-items: center;
 }
@@ -196,4 +204,15 @@ a {
 
 .underlined-white {
   border-bottom: 2px solid white;
+}
+
+.height100 {
+  height: 100%;
+}
+
+.margined-insides {
+}
+
+.margined-insides > * {
+  margin: 2.5%;
 }

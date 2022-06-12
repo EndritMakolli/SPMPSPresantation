@@ -45,10 +45,10 @@ export default class UserStore {
 
       if (status === 200) {
         runInAction(() => {
-          this.user = data;
-          //this.user = fakeAdmin;
-          this.role = data.role;
-          //this.role = "ADMIN";
+          //this.user = data;
+          this.user = fakeAdmin;
+          //this.role = data.role;
+          this.role = "ADMIN";
 
           this.loggedIn = true;
         });

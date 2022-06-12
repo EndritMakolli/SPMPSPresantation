@@ -28,6 +28,7 @@ export default observer(function App() {
 
   return (
     <div className="App">
+      <div className="background"></div>
       {!loggedIn && <LoginPage />}
       {loggedIn && !currentFaculty && <ChooseFaculty />}
       {loggedIn && currentFaculty && <Header role={role!} />}

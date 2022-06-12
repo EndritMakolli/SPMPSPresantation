@@ -1,4 +1,7 @@
+import { BusSchedule } from "./BusSchedule";
+
 export type Location = {
-  locationId: number;
+  locationId: string;
   locationName: string;
+  busSchedule?: BusSchedule;
 };
