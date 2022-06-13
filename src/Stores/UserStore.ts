@@ -1,6 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../Agent";
-import { fakeAdmin } from "../FakeData";
 import { Faculty } from "../Types/Faculty";
 import { Student } from "../Types/Student";
 import { User } from "../Types/User";
@@ -47,7 +46,7 @@ export default class UserStore {
         runInAction(() => {
           this.user = data;
           //this.user = fakeAdmin;
-          this.role = data.role;
+          this.role = data.roleName;
           //this.role = "ADMIN";
 
           this.loggedIn = true;

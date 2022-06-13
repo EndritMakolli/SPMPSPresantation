@@ -51,27 +51,25 @@ export const fakeStudent: Student = {
   ],
 };
 
-export const fakeAdmin: User = {
-  userId: "fbfc92f7-0c3c-42dc-96fc-c6bdf4e98933",
-  firstName: "Filan",
-  lastName: "Fisteku",
-  role: "ADMIN",
-  parentName: "Avdet Fisteku",
-  city: "Gjakovë",
-  address: "Rruga Teuta, C3H1, nr. 10",
-  birthday: "13 Shkurt, 1988",
-  country: "Kosovë",
-  zipCode: "23000",
-  age: "54",
-  personalNumber: "109311231",
-  telephone: "+383 44 112 808",
-  email: "ffadmn@ubt-uni.net",
-  gender: "Mashkull",
-  profilePictureUrl:
-    "https://images.squarespace-cdn.com/content/v1/5b14d6b9e17ba3952cac9f04/1529195603042-9ITIYY4D1VS00NETN01Q/image-asset.jpeg",
-};
-
-export const Users = [fakeStudent, fakeAdmin];
+// export const fakeAdmin: User = {
+//   userId: "fbfc92f7-0c3c-42dc-96fc-c6bdf4e98933",
+//   firstName: "Filan",
+//   lastName: "Fisteku",
+//   role: "ADMIN",
+//   parentName: "Avdet Fisteku",
+//   city: "Gjakovë",
+//   address: "Rruga Teuta, C3H1, nr. 10",
+//   birthday: "13 Shkurt, 1988",
+//   country: "Kosovë",
+//   zipCode: "23000",
+//   age: "54",
+//   personalNumber: "109311231",
+//   telephone: "+383 44 112 808",
+//   email: "ffadmn@ubt-uni.net",
+//   gender: "Mashkull",
+//   profilePictureUrl:
+//     "https://images.squarespace-cdn.com/content/v1/5b14d6b9e17ba3952cac9f04/1529195603042-9ITIYY4D1VS00NETN01Q/image-asset.jpeg",
+// };
 
 export const fakeFaculty: Faculty = {
   facultyID: 1,

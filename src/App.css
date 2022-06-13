@@ -25,7 +25,7 @@ html {
 .App {
   font-family: "Montserrat", sans-serif;
   font-family: "Raleway", sans-serif;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
 }
 
@@ -57,7 +57,7 @@ main section {
 .contents {
   background-color: #f8f7f4;
   margin-top: 2.5%;
-  min-height: 80vh;
+  min-height: 79vh;
   border-radius: 10px;
   margin-bottom: 2.5%;
   padding: 1.25%;
