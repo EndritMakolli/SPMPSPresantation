@@ -7,7 +7,8 @@ export const DataField = ({ label, contents }: DataFieldProps) => {
   return (
     <>
       <label htmlFor="span">{label}</label>
-      <span className="dataField">{contents}</span>
+      <p className="font-medium mg-lg underlined pad-lg">{contents}</p>
+      {/* <span className="dataField">{contents}</span> */}
     </>
   );
 };

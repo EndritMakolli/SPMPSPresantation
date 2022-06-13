@@ -24,7 +24,7 @@ import "./Style/Columns.css";
 import ManageStudents from "./Interfaces/ManageSystem/Students/ManageStudents";
 
 export default observer(function App() {
-  const { loggedIn, role, currentFaculty } = useStore().userStore;
+  const { loggedIn, role, currentFaculty, user } = useStore().userStore;
 
   return (
     <div className="App">
@@ -35,7 +35,10 @@ export default observer(function App() {
       {loggedIn && currentFaculty && (
         <main>
           <Routes>
-            <Route path="profile/personal" element={<PersonalProfile />} />
+            <Route
+              path="profile/personal"
+              element={<PersonalProfile user={user!} />}
+            />
             <Route path="semester" element={<Semester />} />
             <Route path="exams/studentexams" element={<RegisteredExams />} />
             <Route path="exams/registerexams" element={<RegisterExams />} />

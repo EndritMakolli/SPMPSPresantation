@@ -1,6 +1,6 @@
 .dotted-line {
   display: inline-block;
-  height: 100%;
+  /* height: 100%; does the opposite for some reason */
   border-left: 1px solid #062726;
 }
 
@@ -62,19 +62,6 @@ form label {
 ::-webkit-scrollbar-thumb:hover {
   background: #688988;
   border-radius: 10px;
-}
-
-span.dataField {
-  background-color: #f8fffe;
-  border: 2px solid #688988;
-  padding: 7.5px;
-  min-width: 100%;
-  display: block;
-  margin-bottom: 2.5%;
-  color: #062726;
-  font-weight: 700;
-  border-radius: 10px;
-  user-select: none;
 }
 
 .full-height-column {
@@ -151,6 +138,10 @@ a {
   border: 2px solid #062726;
 }
 
+.border-lighter-sm {
+  border: 1px solid #062726;
+}
+
 .pad-sm {
   padding: 1%;
 }
@@ -199,6 +190,10 @@ a {
 }
 
 .underlined {
+  border-bottom: 2px solid black;
+}
+
+.underlined-lighter {
   border-bottom: 2px solid black;
 }
 

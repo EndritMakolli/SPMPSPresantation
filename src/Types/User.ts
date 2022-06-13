@@ -1,18 +1,19 @@
 export type User = {
   userId: string;
   firstName: string;
-  lastName: string;
+  surname: string;
   parentName: string;
-  birthday: string;
-  address: string;
+  dateOfBirth: string;
+  addressDetails: string;
   city: string;
-  role: string;
+  roleName: string;
   age: string;
   email: string;
   gender: string;
   personalNumber: string;
-  profilePictureUrl: string;
-  telephone: string;
+  dateRegistered: string;
+  profilePictureURL: string;
+  phoneNumber: string;
   country: string;
   zipCode: string;
 };

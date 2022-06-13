@@ -1,9 +1,20 @@
 import "../Style/PersonalProfile.css";
 import { DataField } from "../Components/Common/DataField";
-import { useStore } from "../Stores/Store";
+import { User } from "../Types/User";
+import { dateParser } from "../utils";
 
-export const PersonalProfile = () => {
-  const { user } = useStore().userStore;
+interface Props {
+  user: User;
+}
+
+export const PersonalProfile = ({ user }: Props) => {
+  const parseAge = (): number => {
+    let birthday = new Date(user.dateOfBirth);
+    let currentDay = new Date();
+
+    return currentDay.getFullYear() - birthday.getFullYear();
+  };
+
   return (
     <>
       <h1 id="title">Profili personal</h1>
@@ -11,28 +22,32 @@ export const PersonalProfile = () => {
         <div className="personalProfileBlock">
           <DataField
             label="Emri dhe mbiemri"
-            contents={user?.firstName + " - " + user?.lastName}
+            contents={user?.firstName + " " + user?.surname}
           />
           <DataField label="Emri i prindit" contents={user!.parentName} />
-          <DataField label="Ditëlindja" contents={user!.birthday} />
-          <DataField label="Mosha" contents={user!.age} />
+          <DataField
+            label="Ditëlindja"
+            contents={dateParser(user.dateOfBirth)}
+          />
+          <DataField label="Mosha" contents={parseAge().toString()} />
           <DataField
             label="Numri i letërnjoftimit"
             contents={user!.personalNumber}
           />
-          <DataField label="Email adresa" contents={user!.email} />
+
           <DataField label="Gjinia" contents={user!.gender} />
         </div>
 
         <div className="personalProfileBlock">
-          <img src={user!.profilePictureUrl} alt="Fotoja e juaj" />
+          <img src={user!.profilePictureURL} alt="Fotoja e juaj" />
         </div>
 
         <div className="personalProfileBlock">
-          <DataField label="Numri i telefonit" contents={user!.telephone} />
+          <DataField label="Email adresa" contents={user!.email} />
+          <DataField label="Numri i telefonit" contents={user!.phoneNumber} />
           <DataField label="Shteti" contents={user!.country} />
           <DataField label="Qyteti" contents={user!.city} />
-          <DataField label="Adresa" contents={user!.address} />
+          <DataField label="Adresa" contents={user!.addressDetails} />
           <DataField label="ZIP Kodi" contents={user!.zipCode} />
         </div>
       </section>

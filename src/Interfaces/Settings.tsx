@@ -13,15 +13,17 @@ export const Settings = () => {
         <>
           <h1>Settings</h1>
           <section className="contents" id="settings">
-            <div className="form-item">
-              <AccountBalanceOutlinedIcon fontSize="large" />
-              <Link to="po">
-                <button onClick={deselectFaculty}>Rizgjedh fakultetin</button>
-              </Link>
-            </div>
-            <div className="form-item">
-              <AccountBalanceOutlinedIcon fontSize="large" />
-              <button onClick={logOut}>Çkyçu nga sistemi</button>
+            <div className="column col-6 justify-between full-height">
+              <div className="row justify-around col-5">
+                <AccountBalanceOutlinedIcon fontSize="large" />
+                <Link to="po">
+                  <button onClick={deselectFaculty}>Rizgjedh fakultetin</button>
+                </Link>
+              </div>
+              <div className="row justify-around col-5">
+                <AccountBalanceOutlinedIcon fontSize="large" />
+                <button onClick={logOut}>Çkyçu nga sistemi</button>
+              </div>
             </div>
           </section>
         </>
