@@ -2,7 +2,13 @@ import { BusSchedule } from "./Types/BusSchedule";
 import { Faculty } from "./Types/Faculty";
 import { Location } from "./Types/Location";
 import { Student } from "./Types/Student";
+import { AcademicStaff } from "./Types/AcademicStaff";
 import { User } from "./Types/User";
+import { AdministriveStaff } from "./Types/AdministriveStaff";
+import { Course } from "./Types/Course";
+import { Class } from "./Types/Class";
+import { LectureHall } from "./Types/LectureHall";
+import { Group } from "./Types/Group";
 
 // export const fakeStudent: Student = {
 //   userId: "b031f706-5ee5-4322-8003-37fe136bf4cf",

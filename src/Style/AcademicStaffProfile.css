@@ -1,0 +1,12 @@
+#academicStaffProfile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  
+  #academicStaffProfile img {
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 15px;
+  }
+  
