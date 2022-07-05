@@ -19,16 +19,16 @@ export const ManageStudentsDetails = ({
         <h2 className="mg-lg bold">Detajet e studentit</h2>
         <img
           className="col-6 mg-lg"
-          src={student.profilePictureUrl}
+          src={student.profilePictureURL}
           alt="Fotoja e profilit"
         />
         <p className="font-large mg-lg underlined">
-          {student.firstName + " " + student.lastName}
+          {student.firstName + " " + student.surname}
         </p>
         <p className="font-medium mg-lg underlined">{student.gender}</p>
         <p className="font-medium mg-lg underlined">{student.email}</p>
-        <p className="font-medium mg-lg underlined">{student.address}</p>
-        <p className="font-medium mg-lg underlined">{student.telephone}</p>
+        <p className="font-medium mg-lg underlined">{student.addressDetails}</p>
+        <p className="font-medium mg-lg underlined">{student.phoneNumber}</p>
         <p className="font-medium mg-lg underlined"></p>
         <p className="font-medium mg-lg underlined">
           Gjenerata -

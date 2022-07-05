@@ -1,24 +1,9 @@
 import { Generation } from "./Generation";
 import { Group } from "./Group";
 import { Specialization } from "./Specialization";
+import { User } from "./User";
 
-export type Student = {
-  userId: string;
-  firstName: string;
-  lastName: string;
-  parentName: string;
-  birthday: string;
-  address: string;
-  city: string;
-  role: string;
-  age: string;
-  email: string;
-  gender: string;
-  personalNumber: string;
-  profilePictureUrl: string;
-  telephone: string;
-  country: string;
-  zipCode: string;
+export type Student = User & {
   studentId: string;
   groups: Group[];
   specializations: Specialization[];

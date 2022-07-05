@@ -22,7 +22,7 @@ export const ManageStudentsForm = ({
       onSubmit={(e) => e.preventDefault()}
     >
       <h1 className="text-center underline-white">
-        {student.userId ? "Ndrysho studentin" : "Regjistro student"}
+        {student.studentId ? "Ndrysho studentin" : "Regjistro student"}
       </h1>
       <div className="row mg-lg">
         <label htmlFor="">Emri i studentit : </label>
@@ -38,7 +38,7 @@ export const ManageStudentsForm = ({
         <input
           type="text"
           name="lastName"
-          defaultValue={student.lastName}
+          defaultValue={student.surname}
           onChange={onFormInputChange}
         />
       </div>
@@ -65,7 +65,7 @@ export const ManageStudentsForm = ({
         <input
           type="text"
           name="telephone"
-          defaultValue={student.telephone}
+          defaultValue={student.phoneNumber}
           onChange={onFormInputChange}
         />
       </div>
@@ -74,16 +74,7 @@ export const ManageStudentsForm = ({
         <input
           type="date"
           name="birthday"
-          defaultValue={student.email}
-          onChange={onFormInputChange}
-        />
-      </div>
-      <div className="row mg-lg">
-        <label htmlFor="">Ditëlindja : </label>
-        <input
-          type="date"
-          name="birthday"
-          defaultValue={student.email}
+          defaultValue={student.dateOfBirth}
           onChange={onFormInputChange}
         />
       </div>
@@ -114,8 +105,8 @@ export const ManageStudentsForm = ({
         />
       </div>
       <button onClick={onCancelClick}>ANULO</button>
-      {!student.userId && <button onClick={onRegisterClick}>REGJISTRO</button>}
-      {student.userId && <button onClick={onEditClick}>RUAJ NDRYSHIMET</button>}
+      {!student.id && <button onClick={onRegisterClick}>REGJISTRO</button>}
+      {student.id && <button onClick={onEditClick}>RUAJ NDRYSHIMET</button>}
     </form>
   );
 };

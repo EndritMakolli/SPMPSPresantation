@@ -20,13 +20,13 @@ export const ManageStudentsTable = ({ students, onDetailsClick }: Props) => {
       <tbody>
         {students.map((student) => {
           return (
-            <tr key={student.userId}>
+            <tr key={student.id}>
               <td>{student.studentId}</td>
-              <td>{student.firstName + " " + student.lastName}</td>
+              <td>{student.firstName + " " + student.surname}</td>
               <td>{student.parentName}</td>
               <td>{student.generation.generationName}</td>
               <td>
-                <button onClick={() => onDetailsClick(student.userId)}>
+                <button onClick={() => onDetailsClick(student.id)}>
                   SHIKO DETAJET
                 </button>
               </td>

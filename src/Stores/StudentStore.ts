@@ -1,9 +1,9 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { v4 } from "uuid";
-import { fakeStudent } from "../FakeData";
+import { City } from "../Types/City";
+import { Country } from "../Types/Country";
 import { Generation } from "../Types/Generation";
 import { Student } from "../Types/Student";
-import { arrayToMap } from "../utils";
 
 interface IStudentStore {
   fetchStudents: () => void;
@@ -42,9 +42,9 @@ export default class StudentStore implements IStudentStore {
     //let facultyId = localStorage.getItem("facultyId");
     setTimeout(() => {
       runInAction(() => {
-        this.students = arrayToMap([fakeStudent, fakeStudent], "userId");
-        this.loading = false;
-        this.filteredStudents = this.getStudents();
+        // this.students = arrayToMap([fakeStudent, fakeStudent], "userId");
+        // this.loading = false;
+        // this.filteredStudents = this.getStudents();
       });
     }, 3000);
   };
@@ -62,13 +62,13 @@ export default class StudentStore implements IStudentStore {
   };
 
   deleteStudent = () => {
-    this.students.delete(this.currentStudent!.userId);
+    this.students.delete(this.currentStudent!.id);
     this.filteredStudents = this.getStudents();
     this.deselectStudent();
   };
 
   updateStudent = () => {
-    this.students.set(this.currentStudent!.userId, this.currentStudent!);
+    this.students.set(this.currentStudent!.id, this.currentStudent!);
     this.filteredStudents = this.getStudents();
   };
 
@@ -77,29 +77,29 @@ export default class StudentStore implements IStudentStore {
   };
 
   createStudent = () => {
-    this.currentStudent!.userId = v4();
-    this.students.set(this.currentStudent!.userId, this.currentStudent!);
+    this.currentStudent!.id = v4();
+    this.students.set(this.currentStudent!.id, this.currentStudent!);
     this.filteredStudents = this.getStudents();
   };
 
   setDefaultStudent = () => {
     this.currentStudent = {
-      userId: "",
+      id: "",
       firstName: "",
-      lastName: "",
+      surname: "",
       parentName: "",
-      birthday: "",
-      address: "",
-      city: "",
-      role: "",
+      dateOfBirth: "",
+      addressDetails: "",
+      city: {} as City,
+      roleName: "",
       age: "",
       email: "",
       gender: "",
       personalNumber: "",
-      profilePictureUrl: "",
-      telephone: "",
-      country: "",
-      zipCode: "",
+      dateRegistered: "",
+      profilePictureURL: "",
+      phoneNumber: "",
+      country: {} as Country,
       studentId: "",
       groups: [],
       specializations: [],

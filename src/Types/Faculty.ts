@@ -1,8 +1,9 @@
+import { Level } from "./Level";
+import { Major } from "./Major";
+
 export type Faculty = {
   facultyID: number;
   facultyName: string;
-  majorId?: number;
-  levelId?: number;
-  majorName?: string;
-  levelName?: string;
+  major: Major;
+  level: Level;
 };

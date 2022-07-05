@@ -1,11 +1,14 @@
+import { City } from "./City";
+import { Country } from "./Country";
+
 export type User = {
-  userId: string;
+  id: string;
   firstName: string;
   surname: string;
   parentName: string;
   dateOfBirth: string;
   addressDetails: string;
-  city: string;
+  city: City;
   roleName: string;
   age: string;
   email: string;
@@ -14,6 +17,5 @@ export type User = {
   dateRegistered: string;
   profilePictureURL: string;
   phoneNumber: string;
-  country: string;
-  zipCode: string;
+  country: Country;
 };

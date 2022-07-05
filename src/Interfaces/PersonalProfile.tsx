@@ -45,10 +45,10 @@ export const PersonalProfile = ({ user }: Props) => {
         <div className="personalProfileBlock">
           <DataField label="Email adresa" contents={user!.email} />
           <DataField label="Numri i telefonit" contents={user!.phoneNumber} />
-          <DataField label="Shteti" contents={user!.country} />
-          <DataField label="Qyteti" contents={user!.city} />
+          <DataField label="Shteti" contents={user!.country.countryName} />
+          <DataField label="Qyteti" contents={user!.city.cityName} />
           <DataField label="Adresa" contents={user!.addressDetails} />
-          <DataField label="ZIP Kodi" contents={user!.zipCode} />
+          <DataField label="ZIP Kodi" contents={user!.city.zipCode} />
         </div>
       </section>
     </>
