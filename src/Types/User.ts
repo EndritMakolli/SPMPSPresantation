@@ -1,5 +1,6 @@
 import { City } from "./City";
 import { Country } from "./Country";
+import { Role } from "./Role";
 
 export type User = {
   id: string;
@@ -18,4 +19,5 @@ export type User = {
   profilePictureURL: string;
   phoneNumber: string;
   country: Country;
+  role?: Role;
 };

@@ -1,17 +1,23 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../Agent";
 import { Faculty } from "../Types/Faculty";
-import { Student } from "../Types/Student";
 import { User } from "../Types/User";
+import { PostsStore } from "./PostsStore";
+import { AcademicManager } from "./UserManagers/AcademicManager";
+import { SettingsStore } from "./UserManagers/SettingsStore";
+import { StudentManager } from "./UserManagers/StudentManager";
 
 export default class UserStore {
   loggedIn: boolean = false;
-  role: string | undefined;
   currentFaculty: Faculty | undefined = undefined;
   user: User | undefined = undefined;
-  student: Student | undefined = undefined;
+  studentManager: StudentManager | undefined;
+  academicManager: AcademicManager | undefined;
+  userSettings: SettingsStore | undefined = undefined;
+  postsStore: PostsStore | undefined = undefined;
   registeredFaculties: Faculty[] | undefined = undefined;
   loading: boolean = false;
+  loginFailed: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -28,11 +34,17 @@ export default class UserStore {
 
       if (authStatus === 200) {
         await this.loadUser(userId);
+        this.postsStore = new PostsStore(
+          this.user!,
+          this.currentFaculty!,
+          this.studentManager?.student
+        );
         this.stoppedLoading();
       } else if (authStatus === 401) {
         alert("Cookie not yet set");
       }
     } catch (err) {
+      setTimeout(() => (this.loginFailed = true), 1000); // Otherwise the loginpage will never show because of the loader
       console.log(err);
       this.stoppedLoading();
     }
@@ -43,17 +55,68 @@ export default class UserStore {
       const { data, status } = await agent.Users.GetUserById(userId);
 
       if (status === 200) {
+        await this.setFacultyFromSession();
         runInAction(() => {
           this.user = data;
-          this.role = data.roleName;
-
           this.loggedIn = true;
+          this.userSettings = new SettingsStore(this.user);
+          this.loadUserType();
         });
       } else if (status === 404) {
         console.log("User could not be queried");
       }
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  loadUserType = async () => {
+    switch (this.getRole()) {
+      case "STUDENT":
+        await this.loadStudent();
+        break;
+      case "ACADEMICSTAFF":
+        await this.loadAcademicStaff();
+        break;
+    }
+  };
+
+  loadStudent = async () => {
+    try {
+      const { data, status } = await agent.Users.Students.GetStudentProfile(
+        this.currentFaculty!.facultyID,
+        this.user!.id
+      );
+      if (status === 200) {
+        this.studentManager = new StudentManager(
+          data,
+          this.user!,
+          this.currentFaculty!
+        );
+      }
+    } catch (e) {
+      console.log(e);
+      console.log("Error - couldn't load student!");
+    }
+  };
+
+  loadAcademicStaff = async () => {
+    //here
+    try {
+      const { data, status } = await agent.Users.Academic.GetAcademicProfile(
+        this.user!.id
+      );
+      console.log(status);
+      if (status === 200) {
+        this.academicManager = new AcademicManager(
+          data,
+          this.user!,
+          this.currentFaculty!
+        );
+      }
+    } catch (e) {
+      console.log(e);
+      console.log("Error - couldn't load academic staff!");
     }
   };
 
@@ -107,19 +170,14 @@ export default class UserStore {
   };
 
   getFacultiesForUser = async () => {
-    //@ts-ignore
     if (!this.user?.id) return; //Checks whether the user is not set
-    //@ts-ignore
     if (this.user?.id && this.currentFaculty) return; //Checks whether both the user and faculty are picked
 
     this.nowLoading();
     try {
       const { data, status } = await agent.Faculties.GetFacultiesForUser(
-        //@ts-ignore
         this.user.id
       );
-      //@ts-ignore
-      console.log(this.user.id);
       if (status === 200) {
         runInAction(() => {
           this.registeredFaculties = data;
@@ -143,7 +201,7 @@ export default class UserStore {
 
   clearSession = () => {
     this.loggedIn = false;
-    this.role = "NONE";
+    setTimeout(() => (this.loginFailed = true), 2000); // Otherwise the loginpage will never show because of the loader
     this.user = {} as User;
     this.currentFaculty = undefined;
     this.registeredFaculties = undefined;
@@ -153,5 +211,9 @@ export default class UserStore {
   logOut = async () => {
     let res = await agent.Authentication.LogOut();
     res.status === 200 ? this.clearSession() : alert("Error logging out!");
+  };
+
+  getRole = (): string => {
+    return this.user!.role!.name.toUpperCase();
   };
 }

@@ -22,7 +22,9 @@ export const ManageLectureHallsForm = ({
       onSubmit={(e) => e.preventDefault()}
     >
       <h1 className="text-center underline-white">
-        {lectureHall.lectureHallId ? "Ndrysho lectureHallin" : "Regjistro lectureHall"}
+        {lectureHall.lectureHallId
+          ? "Ndrysho lectureHallin"
+          : "Regjistro lectureHall"}
       </h1>
       <div className="row mg-lg">
         <label htmlFor="">Emri i salles : </label>
@@ -47,15 +49,17 @@ export const ManageLectureHallsForm = ({
         <input
           type="text"
           name="location"
-          defaultValue={lectureHall.location}
+          defaultValue={lectureHall.locationi}
           onChange={onFormInputChange}
         />
       </div>
       <button onClick={onCancelClick}>ANULO</button>
-      {!lectureHall.lectureHallId && <button onClick={onRegisterClick}>REGJISTRO</button>}
-      {lectureHall.lectureHallId && <button onClick={onEditClick}>RUAJ NDRYSHIMET</button>}
+      {!lectureHall.lectureHallId && (
+        <button onClick={onRegisterClick}>REGJISTRO</button>
+      )}
+      {lectureHall.lectureHallId && (
+        <button onClick={onEditClick}>RUAJ NDRYSHIMET</button>
+      )}
     </form>
   );
 };
-
-

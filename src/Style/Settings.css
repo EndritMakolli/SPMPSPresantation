@@ -1,19 +1,38 @@
 #settings {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  padding: 2.5%;
+  justify-content: flex-start;
+}
+
+#settings div {
+  width: 80%;
+  margin-left: 10%;
+  height: 110%;
+  margin: 0;
+}
+
+#settings div h2 {
+  border-bottom: 2pt solid black;
+  padding: 2%;
+}
+
+#settings div div.row {
+  width: 100%;
+}
+
+#settings div span {
+  width: 70%;
+  margin: 2.5%;
+  text-align: justify;
+  font-size: large;
+}
+
+#settings > div div svg {
+  transform: scale(1.5);
 }
 
 #settings button {
-  margin: 1%;
-  border: none;
-  background-color: #062726;
-  color: white;
-  padding: 1.5%;
-  border-radius: 10px;
-  transition: all 0.1s ease-in-out;
-}
-
-#settings button:hover {
-  background-color: #3a4b4a;
+  width: 17.5%;
+  display: block;
 }

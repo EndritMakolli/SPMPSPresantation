@@ -32,9 +32,7 @@ export const ManageStudentsDetails = ({
         <p className="font-medium mg-lg underlined"></p>
         <p className="font-medium mg-lg underlined">
           Gjenerata -
-          <span className="bold">
-            {" " + student.generation.generationName}
-          </span>
+          <span className="bold">{" " + student.generation.name}</span>
         </p>
         <p className="font-medium mg-lg underlined">
           IDja studentore -

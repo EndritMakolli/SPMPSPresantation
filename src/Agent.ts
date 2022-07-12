@@ -1,7 +1,19 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { request } from "http";
+import { url } from "inspector";
+import { AcademicStaff } from "./Types/AcademicStaff";
 import { BusSchedule } from "./Types/BusSchedule";
+import { Course } from "./Types/Course";
+import { ExamSeason } from "./Types/ExamSeason";
 import { Faculty } from "./Types/Faculty";
+import { Grade } from "./Types/Grade";
+import { Lecture } from "./Types/Lecture";
+import { LectureGroup } from "./Types/LectureGroup";
 import { Location } from "./Types/Location";
+import { Post } from "./Types/Post";
+import { Semester } from "./Types/Semester";
+import { Specialization } from "./Types/Specialization";
+import { Student } from "./Types/Student";
 import { User } from "./Types/User";
 
 axios.defaults.withCredentials = true;
@@ -10,6 +22,9 @@ const urls = {
   auth: "http://localhost:5000/",
   fcm: "http://localhost:7000/",
   usr: "http://localhost:9000/",
+  crs: "http://localhost:8000/api/coursesservice/",
+  pst: "http://localhost:6001/api/postsservice/",
+  lcg: "http://localhost:4000/api/",
 };
 
 type Response<T> = {
@@ -24,8 +39,8 @@ const responseBody = <T>(response: AxiosResponse<T>): Response<T> => {
 const requests = {
   get: <T>(url: string, config?: AxiosRequestConfig) =>
     axios.get<T>(url, config).then(responseBody),
-  post: (url: string, obj: {}) => axios.post(url, obj).then(responseBody),
-  put: (url: string, obj: {}) => axios.put(url, obj).then(responseBody),
+  post: <T>(url: string, obj: {}) => axios.post<T>(url, obj).then(responseBody),
+  put: <T>(url: string, obj: {}) => axios.put<T>(url, obj).then(responseBody),
   delete: (url: string) => axios.delete(url).then(responseBody),
 };
 
@@ -79,12 +94,111 @@ const Faculties = {
 const Users = {
   GetUserById: async (userId: string) =>
     requests.get<User>(urls.usr + "api/Users/" + userId),
+  Students: {
+    GetStudentProfile: async (facultyId: number, userId: string) =>
+      requests.get<Student>(
+        urls.usr +
+          "api/Students/getStudentForFaculty/" +
+          facultyId +
+          "/" +
+          userId
+      ),
+    GetAllRegisteredSemesters: async (studentId: string, facultyId: number) =>
+      requests.get<Semester[]>(
+        urls.fcm +
+          "api/RegisteredSemesters/getRegisteredSemesterInFacultyForStudent/" +
+          studentId +
+          "/" +
+          facultyId
+      ),
+  },
+  Academic: {
+    GetAcademicProfile: async (userId: string) =>
+      requests.get<AcademicStaff>(urls.usr + "api/academicstaff/" + userId),
+    GetExams: async (facultyId: number, userId: string) =>
+      requests.get<Grade[]>(
+        urls.crs +
+          "Grades/examsRegisteredForProfessor/" +
+          facultyId +
+          "/" +
+          userId
+      ),
+    GetCourses: async (facultyId: number, userId: string) =>
+      requests.get<Course[]>(
+        urls.crs + "Courses/getCoursesForLecturer/" + facultyId + "/" + userId
+      ),
+  },
+};
+
+const Courses = {
+  GenerateTranscript: async (userId: string, facultyId: number) =>
+    requests.get<Grade[]>(
+      urls.crs + "Grades/generateTranscript/" + facultyId + "/" + userId
+    ),
+  GetRegisteredExams: async (userId: string, facultyId: number) =>
+    requests.post<Grade[]>(urls.crs + "Grades/getCurrentlyRegisteredExams", {
+      studentId: userId,
+      facultyId: facultyId,
+    }),
+  GetCurrentSeason: async (facultyId: number) =>
+    requests.get<ExamSeason>(
+      urls.crs + "Grades/currentlyOpenedExamSeason/" + facultyId
+    ),
+  RefuseGrade: async (gradeId: number, userId: string) =>
+    requests.put(urls.crs + "Grades/refuseGrade", {
+      gradeId: gradeId,
+      userId: userId,
+    }),
+  CancelExamRegistration: async (gradeId: number, userId: string) =>
+    requests.delete(
+      urls.crs + "Grades/cancelExamRegistration/" + gradeId + "/" + userId
+    ),
+  GetRegisterableExams: async (
+    studentId: string,
+    semesterId: string,
+    specializationId: number
+  ) =>
+    requests.post<Course[]>(urls.crs + "Courses/getRegisterableExams", {
+      studentId: studentId,
+      specializationId: specializationId,
+      currentSemesterId: semesterId,
+    }),
+  RegisterExam: async (obj: {}) =>
+    requests.post(urls.crs + "Grades/registerExam", obj),
+  GetExamHistory: async (userId: string, facultyId: number) =>
+    requests.get<ExamSeason[]>(
+      urls.crs + "Grades/examHistory/" + facultyId + "/" + userId
+    ),
+  GradeStudent: async (obj: {}) =>
+    requests.put(urls.crs + "Grades/gradeStudent", obj),
+  Specializations: {
+    GetSpecialization: async (id: number) =>
+      requests.get<Specialization>(urls.crs + "Specializations/" + id),
+  },
+};
+
+const Posts = {
+  SubscribeToEmails: async (userId: string) =>
+    requests.get(urls.pst + "Posts/SubscribeToEmails/" + userId),
+  CheckIfSubscribed: async (userId: string) =>
+    requests.get<boolean>(urls.pst + "Posts/GetUserSubscription/" + userId),
+  GetAllPosts: async () => requests.get<Post[]>(urls.pst + "Posts/getallposts"),
+};
+
+const LectureGroups = {
+  GetSchedule: async (groupId: number) =>
+    requests.get<Lecture[]>(urls.lcg + "lecturegroups/schedule/" + groupId),
+  GetGroup: async (groupId: number) =>
+    requests.get<LectureGroup>(urls.lcg + "lecturegroups/" + groupId),
 };
 
 const agent = {
   Authentication: Authentication,
   Faculties: Faculties,
   Users: Users,
+  Courses: Courses,
+  Posts: Posts,
+  LectureGroups: LectureGroups,
 };
 
 export default agent;

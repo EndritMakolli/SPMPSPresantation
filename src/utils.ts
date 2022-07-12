@@ -24,10 +24,6 @@ export const monthMap = new Map<number, string>()
 export const dateParser = (dateString: string): string => {
   let dateObj = new Date(dateString);
 
-  console.log(dateString);
-
-  console.log(dateObj);
-
   let date =
     dateObj.getDate() +
     " " +
@@ -36,4 +32,9 @@ export const dateParser = (dateString: string): string => {
     dateObj.getFullYear();
 
   return date;
+};
+
+export const timeParser = (dateString: string): string => {
+  let date = new Date(dateString);
+  return date.toTimeString().substring(0, 8);
 };

@@ -42,13 +42,7 @@ export const data: HeaderItem[] = [
         icon: <SchoolOutlinedIcon />,
       },
       {
-        roles: ["ACADEMIC"],
-        title: "Login Page",
-        linkTo: "login",
-        icon: <PersonIcon />,
-      },
-      {
-        roles: ["ACADEMIC"],
+        roles: ["ACADEMICSTAFF"],
         title: "Profili akademik",
         linkTo: "profile/academic",
         icon: <SchoolOutlinedIcon />,
@@ -68,13 +62,33 @@ export const data: HeaderItem[] = [
     ],
   },
   {
-    roles: ["STUDENT"],
+    roles: ["ACADEMICSTAFF", "STUDENT"],
     title: "Semestri",
     linkTo: "/semester",
     icon: <CalendarTodayOutlinedIcon />,
+    subItems: [
+      {
+        roles: ["STUDENT"],
+        title: "Regjistro semestrin",
+        linkTo: "/semester",
+        icon: <ArticleOutlinedIcon />,
+      },
+      {
+        roles: ["ACADEMICSTAFF"],
+        title: "Orari im",
+        linkTo: "/semester/staffschedule",
+        icon: <ArticleOutlinedIcon />,
+      },
+      {
+        roles: ["STUDENT"],
+        title: "Orari im",
+        linkTo: "/semester/studentschedule",
+        icon: <ArticleOutlinedIcon />,
+      },
+    ],
   },
   {
-    roles: ["STUDENT", "ACADEMIC"],
+    roles: ["STUDENT", "ACADEMICSTAFF"],
     title: "Provimet",
     linkTo: "/exams",
     icon: <InsertDriveFileOutlinedIcon />,
@@ -98,9 +112,9 @@ export const data: HeaderItem[] = [
         icon: <HistoryEduOutlinedIcon />,
       },
       {
-        roles: ["ACADEMIC"],
+        roles: ["ACADEMICSTAFF"],
         title: "Noto provime",
-        linkTo: "/exams/examgrading",
+        linkTo: "/exams/grading",
         icon: <DriveFileRenameOutlineOutlinedIcon />,
       },
     ],
@@ -112,13 +126,13 @@ export const data: HeaderItem[] = [
     icon: <MarkAsUnreadOutlinedIcon />,
   },
   {
-    roles: ["LECTURER", "ADMIN"],
+    roles: ["ACADEMICSTAFF", "ADMINISTRATIVESTAFF"],
     title: "Raporte",
     linkTo: "/reports",
     icon: <AssessmentOutlinedIcon />,
   },
   {
-    roles: ["ADMIN"],
+    roles: ["ADMINISTRATIVESTAFF"],
     title: "Menaxho sistemin",
     linkTo: "/admin",
     icon: <DashboardOutlinedIcon />,

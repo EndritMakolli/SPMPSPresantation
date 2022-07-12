@@ -91,9 +91,9 @@ section.contents * {
   align-items: center;
   flex-direction: column;
   position: relative;
-  width: 30%;
+  align-self: center;
+  justify-self: center;
   margin-top: 10%;
-  left: 35%;
 }
 
 .loader p {

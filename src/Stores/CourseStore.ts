@@ -89,13 +89,16 @@ export default class CourseStore implements ICourseStore {
       courseId: "",
       courseCode: "",
       courseName: "",
-      ECTS: "",
+      ects: "",
       academicStaff: [],
       semester: {} as Semester,
       specializations: {} as Specialization,
-      courseCategory: "",
+      courseCategory: {
+        categoryId: 0,
+        categoryName: "",
+      },
+    };
   };
-};
   filterCourses = (toMatch: string) => {
     this.filteredCourses = this.getCourses().filter((s) =>
       this.filterLogic(s, toMatch)
@@ -134,4 +137,3 @@ export default class CourseStore implements ICourseStore {
     return this.mode === ViewModes.EDIT;
   };
 }
-

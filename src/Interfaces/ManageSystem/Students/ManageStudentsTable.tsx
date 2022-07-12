@@ -24,7 +24,7 @@ export const ManageStudentsTable = ({ students, onDetailsClick }: Props) => {
               <td>{student.studentId}</td>
               <td>{student.firstName + " " + student.surname}</td>
               <td>{student.parentName}</td>
-              <td>{student.generation.generationName}</td>
+              <td>{student.generation.name}</td>
               <td>
                 <button onClick={() => onDetailsClick(student.id)}>
                   SHIKO DETAJET

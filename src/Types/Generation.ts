@@ -1,4 +1,4 @@
 export type Generation = {
   generationId: number;
-  generationName: string;
+  name: string;
 };

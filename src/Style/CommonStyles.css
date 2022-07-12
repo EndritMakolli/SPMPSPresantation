@@ -118,6 +118,10 @@ a {
   color: white;
 }
 
+.font-small {
+  font-size: 0.9em;
+}
+
 .font-medium {
   font-size: 1.2em;
 }
@@ -210,4 +214,20 @@ a {
 
 .margined-insides > * {
   margin: 2.5%;
+}
+
+section.contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.loader-fullpage {
+  background-color: #f8f7f4a6;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

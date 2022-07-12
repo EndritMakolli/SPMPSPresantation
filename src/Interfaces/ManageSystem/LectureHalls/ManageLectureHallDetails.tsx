@@ -21,7 +21,7 @@ export const ManageLectureHallsDetails = ({
           {" Emri i salles : " + lectureHall.lectureHallName}
         </p>
         <p className="font-medium mg-lg underlined">{lectureHall.capacity}</p>
-        <p className="font-medium mg-lg underlined">{lectureHall.location}</p>
+        <p className="font-medium mg-lg underlined">{lectureHall.locationi}</p>
         <p className="font-medium mg-lg underlined">
           IDja e salles -
           <span className="bold">{" " + lectureHall.lectureHallId}</span>
@@ -35,5 +35,3 @@ export const ManageLectureHallsDetails = ({
     </article>
   );
 };
-
-

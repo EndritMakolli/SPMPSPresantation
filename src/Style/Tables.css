@@ -16,7 +16,7 @@ table button {
   border: none;
   background-color: #062726;
   color: white;
-  padding: 5%;
+  padding: 4%;
   border-radius: 10px;
   transition: all 0.1s ease-in-out;
 }
@@ -28,6 +28,15 @@ table tbody tr:nth-child(2n) button {
 
 table tbody tr:nth-child(2n) button:hover {
   background-color: #fffaeb;
+}
+table tbody tr button:disabled {
+  filter: grayscale();
+}
+table tbody tr button:disabled:hover {
+  background-color: rgb(203, 203, 203);
+}
+table tbody tr:nth-child(2n) button:disabled {
+  filter: brightness(0.8);
 }
 
 table button:hover {

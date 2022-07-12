@@ -47,7 +47,7 @@ export const ManageCoursesForm = ({
         <input
           type="text"
           name="ects"
-          defaultValue={course.ECTS}
+          defaultValue={course.ects}
           onChange={onFormInputChange}
         />
       </div>
@@ -56,16 +56,15 @@ export const ManageCoursesForm = ({
         <input
           type="text"
           name="category"
-          defaultValue={course.courseCategory}
+          defaultValue={course.courseCategory?.categoryName}
           onChange={onFormInputChange}
         />
       </div>
       <button onClick={onCancelClick}>ANULO</button>
       {!course.courseId && <button onClick={onRegisterClick}>REGJISTRO</button>}
-      {course.courseId && <button onClick={onEditClick}>RUAJ NDRYSHIMET</button>}
+      {course.courseId && (
+        <button onClick={onEditClick}>RUAJ NDRYSHIMET</button>
+      )}
     </form>
   );
 };
-
-
-

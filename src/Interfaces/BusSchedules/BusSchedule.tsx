@@ -40,7 +40,7 @@ export default observer(function BusSchedule() {
     isInSlotCreateMode,
   } = useStore().busScheduleStore;
 
-  const { role } = useStore().userStore;
+  const { getRole } = useStore().userStore;
 
   const slotInputChangeHandler = (
     e: React.SyntheticEvent<HTMLInputElement>
@@ -178,67 +178,69 @@ export default observer(function BusSchedule() {
     <>
       <h1>Orari i autobusëve</h1>
       <section className="contents">
-        {isLoading && <Loader />}
-        {!isLoading && (
-          <>
-            {!formIsOpen() && hasSchedules() && (
-              <BusScheduleHeading
-                adminMode={role === "ADMIN"}
-                buttonsDisabled={isInSlotCreateMode()}
-                onDeleteScheduleClick={deleteScheduleHandler}
-                onEditScheduleClick={editScheduleHandler}
-                onCreateScheduleClick={handleCreateSchedule}
-              />
-            )}
-            {formIsOpen() && (
-              <BusScheduleForm
-                schedule={currentSchedule!}
-                location={currentLocation!}
-                mode={
-                  mode === BusScheduleViewModes.CREATE_SCHEDULE
-                    ? mode
-                    : BusScheduleViewModes.EDIT_SCHEDULE
-                }
-                onSelectChange={handleCreateScheduleOptionChange}
-                onCancelClick={handleCancelScheduleEditing}
-                onCreateClick={createSchedule}
-                onUpdateClick={editSaveChangesHandler}
-                unassignedLocations={getUnassignedLocations()}
-                assignedLocations={getAssignedLocations()}
-                onInputChange={handleScheduleInputChange}
-              />
-            )}
-            {!formIsOpen() && hasSchedules() && (
-              <BusScheduleTable
-                adminMode={role === "ADMIN"}
-                mode={mode!}
-                slots={currentSchedule?.slots!}
-                currentSlot={currentSlot}
-                onSlotCreateClick={handleSlotCreate}
-                onSlotCreation={createSlotHandler}
-                onSlotEditCancel={deleteSlotClickHandler}
-                onSlotEditClick={editSlotHandler}
-                onSlotEditSave={saveEditedSlotHandler}
-                onSlotInputChange={slotInputChangeHandler}
-              />
-            )}
-          </>
-        )}
-        {!isLoading && !hasSchedules() && !formIsOpen() && (
-          <div className="column col-6 off-3">
-            <p className="font-large text-center">
-              Nuk ka orare të regjistruara në sistem.
-            </p>
-            {role === "ADMIN" && (
-              <button
-                className="align-center col-3 off-4"
-                onClick={handleCreateSchedule}
-              >
-                SHTO NJË ORAR
-              </button>
-            )}
-          </div>
-        )}
+        <div className="wrapper">
+          {isLoading && <Loader />}
+          {!isLoading && (
+            <>
+              {!formIsOpen() && hasSchedules() && (
+                <BusScheduleHeading
+                  adminMode={getRole() === "ADMINISTRATIVESTAFF"}
+                  buttonsDisabled={isInSlotCreateMode()}
+                  onDeleteScheduleClick={deleteScheduleHandler}
+                  onEditScheduleClick={editScheduleHandler}
+                  onCreateScheduleClick={handleCreateSchedule}
+                />
+              )}
+              {formIsOpen() && (
+                <BusScheduleForm
+                  schedule={currentSchedule!}
+                  location={currentLocation!}
+                  mode={
+                    mode === BusScheduleViewModes.CREATE_SCHEDULE
+                      ? mode
+                      : BusScheduleViewModes.EDIT_SCHEDULE
+                  }
+                  onSelectChange={handleCreateScheduleOptionChange}
+                  onCancelClick={handleCancelScheduleEditing}
+                  onCreateClick={createSchedule}
+                  onUpdateClick={editSaveChangesHandler}
+                  unassignedLocations={getUnassignedLocations()}
+                  assignedLocations={getAssignedLocations()}
+                  onInputChange={handleScheduleInputChange}
+                />
+              )}
+              {!formIsOpen() && hasSchedules() && (
+                <BusScheduleTable
+                  adminMode={getRole() === "ADMINISTRATIVESTAFF"}
+                  mode={mode!}
+                  slots={currentSchedule?.slots!}
+                  currentSlot={currentSlot}
+                  onSlotCreateClick={handleSlotCreate}
+                  onSlotCreation={createSlotHandler}
+                  onSlotEditCancel={deleteSlotClickHandler}
+                  onSlotEditClick={editSlotHandler}
+                  onSlotEditSave={saveEditedSlotHandler}
+                  onSlotInputChange={slotInputChangeHandler}
+                />
+              )}
+            </>
+          )}
+          {!isLoading && !hasSchedules() && !formIsOpen() && (
+            <div className="column col-6 off-3">
+              <p className="font-large text-center">
+                Nuk ka orare të regjistruara në sistem.
+              </p>
+              {getRole() === "ADMINISTRATIVESTAFF" && (
+                <button
+                  className="align-center col-3 off-4"
+                  onClick={handleCreateSchedule}
+                >
+                  SHTO NJË ORAR
+                </button>
+              )}
+            </div>
+          )}
+        </div>
       </section>
     </>
   );

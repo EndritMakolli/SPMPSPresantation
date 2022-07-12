@@ -1,11 +1,14 @@
 article.post {
-  border: 1px solid rgba(0, 0, 0, 0.16);
   border-radius: 25px;
   padding: 2.5%;
   margin-top: 5%;
   width: 90%;
   position: relative;
-  left: 5%;
+  border-bottom: 3px solid #132726;
+}
+
+article.post:last-child {
+  margin-bottom: 5%;
 }
 
 article.post div.postHeader {

@@ -20,24 +20,27 @@ export const ManageCoursesDetails = ({
         <p className="font-large mg-lg underlined">
           {course.courseCode + " - " + course.courseName}
         </p>
-        <p className="font-medium mg-lg underlined">{" Kredite: "+course.ECTS}</p>
-        <p className="font-medium mg-lg underlined">{" Kategoria: "+course.courseCategory}</p>
+        <p className="font-medium mg-lg underlined">
+          {" Kredite: " + course.ects}
+        </p>
+        <p className="font-medium mg-lg underlined">
+          {" Kategoria: " + course.courseCategory}
+        </p>
         <p className="font-medium mg-lg underlined"></p>
         <p className="font-medium mg-lg underlined">
           <span className="bold">
-            {" Semestri: " + course.semester.semesterName}
+            {" Semestri: " + course.semester?.semesterName}
           </span>
           <span className="bold">
-            {" Specializimi: " + course.specializations.specializationName}
+            {" Specializimi: " + course.specializations?.specializationName}
           </span>
         </p>
         <p className="font-medium mg-lg underlined">
-          IDja lendes -
-          <span className="bold">{" " + course.courseId}</span>
+          IDja lendes -<span className="bold">{" " + course.courseId}</span>
         </p>
         <p className="font-medium mg-lg underlined">
-          {course.academicStaff.map((academicStaff) => {
-            return <p>{"Stafi: "+academicStaff.firstName}</p>;
+          {course.academicStaff?.map((academicStaff) => {
+            return <p>{"Stafi: " + academicStaff.firstName}</p>;
           })}
         </p>
         <div className="row justify-center mg-lg">
@@ -49,5 +52,3 @@ export const ManageCoursesDetails = ({
     </article>
   );
 };
-
-

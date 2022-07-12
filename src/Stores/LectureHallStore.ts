@@ -42,7 +42,10 @@ export default class LectureHallStore implements ILectureHallStore {
     //let facultyId = localStorage.getItem("facultyId");
     setTimeout(() => {
       runInAction(() => {
-        this.lectureHalls = arrayToMap([fakeLectureHall, fakeLectureHall], "lectureHallId");
+        this.lectureHalls = arrayToMap(
+          [fakeLectureHall, fakeLectureHall],
+          "lectureHallId"
+        );
         this.loading = false;
         this.filteredLectureHalls = this.getLectureHalls();
       });
@@ -68,7 +71,10 @@ export default class LectureHallStore implements ILectureHallStore {
   };
 
   updateLectureHall = () => {
-    this.lectureHalls.set(this.currentLectureHall!.lectureHallId, this.currentLectureHall!);
+    this.lectureHalls.set(
+      this.currentLectureHall!.lectureHallId,
+      this.currentLectureHall!
+    );
     this.filteredLectureHalls = this.getLectureHalls();
   };
 
@@ -78,7 +84,10 @@ export default class LectureHallStore implements ILectureHallStore {
 
   createLectureHall = () => {
     this.currentLectureHall!.lectureHallId = v4();
-    this.lectureHalls.set(this.currentLectureHall!.lectureHallId, this.currentLectureHall!);
+    this.lectureHalls.set(
+      this.currentLectureHall!.lectureHallId,
+      this.currentLectureHall!
+    );
     this.filteredLectureHalls = this.getLectureHalls();
   };
 
@@ -87,7 +96,7 @@ export default class LectureHallStore implements ILectureHallStore {
       lectureHallId: "",
       lectureHallName: "",
       capacity: "",
-      location: "",
+      locationi: "",
     };
   };
 
@@ -102,7 +111,10 @@ export default class LectureHallStore implements ILectureHallStore {
       if (prop === "lectureHallId") continue;
       if (
         //@ts-ignore
-        lectureHall[prop].toString().toLowerCase().includes(toMatch.toLowerCase())
+        lectureHall[prop]
+          .toString()
+          .toLowerCase()
+          .includes(toMatch.toLowerCase())
       )
         return true;
     }
@@ -129,6 +141,3 @@ export default class LectureHallStore implements ILectureHallStore {
     return this.mode === ViewModes.EDIT;
   };
 }
-
-
-

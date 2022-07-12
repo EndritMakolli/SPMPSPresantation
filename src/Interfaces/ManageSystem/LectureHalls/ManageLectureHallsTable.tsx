@@ -5,7 +5,10 @@ interface Props {
   onDetailsClick: (userId: string) => void;
 }
 
-export const ManageLectureHallsTable = ({ lectureHalls, onDetailsClick }: Props) => {
+export const ManageLectureHallsTable = ({
+  lectureHalls,
+  onDetailsClick,
+}: Props) => {
   return (
     <table>
       <thead>
@@ -24,9 +27,11 @@ export const ManageLectureHallsTable = ({ lectureHalls, onDetailsClick }: Props)
               <td>{lectureHall.lectureHallId}</td>
               <td>{lectureHall.lectureHallName}</td>
               <td>{lectureHall.capacity}</td>
-              <td>{lectureHall.location}</td>
+              <td>{lectureHall.locationi}</td>
               <td>
-                <button onClick={() => onDetailsClick(lectureHall.lectureHallId)}>
+                <button
+                  onClick={() => onDetailsClick(lectureHall.lectureHallId)}
+                >
                   SHIKO DETAJET
                 </button>
               </td>
@@ -37,5 +42,3 @@ export const ManageLectureHallsTable = ({ lectureHalls, onDetailsClick }: Props)
     </table>
   );
 };
-
-

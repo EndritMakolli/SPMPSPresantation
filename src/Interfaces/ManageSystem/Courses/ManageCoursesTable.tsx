@@ -25,10 +25,10 @@ export const ManageCoursesTable = ({ courses, onDetailsClick }: Props) => {
             <tr key={course.courseId}>
               <td>{course.courseId}</td>
               <td>{course.courseName}</td>
-              <td>{course.ECTS}</td>
-              <td>{course.semester.semesterName}</td>
-              <td>{course.specializations.specializationName}</td>
-              <td>{course.courseCategory}</td>
+              <td>{course.ects}</td>
+              <td>{course.semester?.semesterName}</td>
+              <td>{course.specializations?.specializationName}</td>
+              <td>{course.courseCategory?.categoryName}</td>
               <td>
                 <button onClick={() => onDetailsClick(course.courseId)}>
                   SHIKO DETAJET
@@ -41,5 +41,3 @@ export const ManageCoursesTable = ({ courses, onDetailsClick }: Props) => {
     </table>
   );
 };
-
-

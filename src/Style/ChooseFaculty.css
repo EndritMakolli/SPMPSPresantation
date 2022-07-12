@@ -1,13 +1,14 @@
 #chooseFaculty {
   position: relative;
-  width: 60%;
-  top: 10%;
-  left: 20%;
-  height: 80%;
+  width: 50%;
+  top: 10% !important;
+  left: 25%;
+  min-height: 60vh;
   background-color: #062726;
   border-radius: 25px;
   padding: 2.5%;
   margin-bottom: 25%;
+  margin-top: 7.5%;
 }
 
 #chooseFaculty h1 {

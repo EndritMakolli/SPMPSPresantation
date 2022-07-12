@@ -11,7 +11,7 @@ import "react-pro-sidebar/dist/css/styles.css";
 import "../Style/Header.css";
 import { Link } from "react-router-dom";
 import { data, HeaderItem } from "./HeaderData";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined"; //student
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined"; //academic
 import SupervisorAccountOutlinedIcon from "@mui/icons-material/SupervisorAccountOutlined"; //admin
@@ -25,12 +25,10 @@ const checkForRole = (item: HeaderItem, role: string): boolean => {
 };
 
 export const Header = ({ role }: HeaderProps) => {
-  const [collapsed, setCollapsed] = useState(false);
-
   const getHeaderIcon = () => {
     return role === "STUDENT" ? (
       <MenuBookOutlinedIcon />
-    ) : role === "ACADEMIC" ? (
+    ) : role === "ACADEMICSTAFF" ? (
       <SchoolOutlinedIcon />
     ) : (
       <SupervisorAccountOutlinedIcon />
@@ -56,17 +54,19 @@ export const Header = ({ role }: HeaderProps) => {
   };
 
   return (
-    <ProSidebar collapsed={collapsed}>
+    <ProSidebar>
       <SidebarHeader>
         <h2 id="header-title">
           {getHeaderIcon()}
-          {role}
+          {role === "STUDENT"
+            ? "Student"
+            : role === "ACADEMICSTAFF"
+            ? "Akademik"
+            : "Admin"}
         </h2>
       </SidebarHeader>
       <SidebarContent>{mapHeaderItems(data)}</SidebarContent>
-      <SidebarFooter>
-        <button onClick={() => setCollapsed(!collapsed)}>Collapse</button>
-      </SidebarFooter>
+      <SidebarFooter></SidebarFooter>
     </ProSidebar>
   );
 };
